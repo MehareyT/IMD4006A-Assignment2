@@ -34,7 +34,8 @@ public class Villager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        playerInput = GameObject.FindGameObjectWithTag("GameController").GetComponent<PlayerInput>();
+        agent = GetComponent<NavMeshAgent>();
     }
 
     // Update is called once per frame
@@ -71,12 +72,29 @@ public class Villager : MonoBehaviour
             case State.dead:
                 break;
         }
-/*        if (isRallied == false)
+
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        //If it was triggered by a villager
+        if (other.GetComponentInParent<Villager>())
         {
-            isInfluenced = false;
-        }*/
+            Villager v = other.GetComponentInParent<Villager>();
+            AddNeighbour(v);
+        }
+
     }
 
+    private void OnTriggerExit(Collider other)
+    {
+        //If the leaving object is a villager
+        if (other.GetComponentInParent<Villager>())
+        {
+            Villager v = other.GetComponentInParent<Villager>();
+            RemoveNeighbour(v);
+        }
+
+    }
     /// <summary>
     /// Sets the group that the villager belongs to. 
     /// </summary>
@@ -114,35 +132,17 @@ public class Villager : MonoBehaviour
             neighbours.Remove(toRemove);
         }
     }
-    private void OnTriggerEnter(Collider other)
-    {
-        //If it was triggered by a villager
-        if (other.GetComponentInParent<Villager>())
-        {
-            Villager v = other.GetComponentInParent<Villager>();
-            AddNeighbour(v);
-        }
-
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        //If the leaving object is a villager
-        if (other.GetComponentInParent<Villager>())
-        {
-            Villager v = other.GetComponentInParent<Villager>();
-            RemoveNeighbour(v);
-        }
-
-    }
 
 
 
+    /// <summary>
+    /// Checks to see if the villager is leading and then removes itself from the playerInput class leader
+    /// </summary>
     private void CheckAndRemoveLeadership()
     {
         if (state == State.leading)
         {
-            playerInput.RemoveLeaderIfPresent(gameObject);
+            playerInput.RemoveControlledVillager(gameObject);
         }
     }
 
@@ -150,39 +150,30 @@ public class Villager : MonoBehaviour
     {
         CheckAndRemoveLeadership();
         state = State.idling;
-        //isInfluenced = false;
-        //isRallied = false;
     }
 
     public void SetToPatrol()
     {
         CheckAndRemoveLeadership();
         state = State.patroling;
-        //isInfluenced = false;
-        //isRallied = false;
     }
 
     public void SetToLeader()
     {
         state = State.leading;
-        //isInfluenced = false;
-        //isRallied = false;
-        playerInput.SetLeader(gameObject);
+        playerInput.SetControlledVillager(gameObject);
     }
 
     public void SetToFollow()
     {
         CheckAndRemoveLeadership();
         state = State.following;
-        //isRallied = true;
     }
 
     public void SetToDead()
     {
         CheckAndRemoveLeadership();
         state = State.dead;
-        //isInfluenced = false;
-        //isRallied = false;
     }
 
     public bool IsLeading()

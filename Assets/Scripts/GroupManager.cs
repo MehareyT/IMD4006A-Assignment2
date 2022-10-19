@@ -27,4 +27,14 @@ public class GroupManager : MonoBehaviour
         if (!unitGroups.Contains(toAdd))
             unitGroups.Add(toAdd);
     }
+
+    /// <summary>
+    /// Removes a group from the list of groups if it is in the list
+    /// </summary>
+    /// <param name="toRemove">The group to remove from the list</param>
+    public void RemoveGroup(UnitGroup toRemove)
+    {
+        if (unitGroups.Contains(toRemove))
+            unitGroups.Remove(toRemove);
+    }
 }
