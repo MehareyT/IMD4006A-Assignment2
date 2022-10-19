@@ -31,7 +31,7 @@ public class PlayerInput : MonoBehaviour
         {
             Debug.Log("Leader is null");
         }
-        agent = leader.GetComponent<NavMeshAgent>();
+        
         leaderActionMap = inputActions.FindActionMap("Leader");
         movement = leaderActionMap.FindAction("Move");
         movement.started += HandleMovementAction;
@@ -42,6 +42,11 @@ public class PlayerInput : MonoBehaviour
         inputActions.Enable();
     }
 
+    private void Start()
+    {
+        
+    }
+
     private void HandleMovementAction(InputAction.CallbackContext ctx)
     {
         Vector2 input = ctx.ReadValue<Vector2>();
@@ -49,6 +54,14 @@ public class PlayerInput : MonoBehaviour
     }
     private void Update()
     {
+        if(agent == null)
+        {
+            if (leader)
+            {
+                agent = leader.GetComponent<NavMeshAgent>();
+            }
+        }
+
         agent.avoidancePriority = 1;
         VectorUpdate();
         MovementUpdate();
