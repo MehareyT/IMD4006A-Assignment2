@@ -142,7 +142,7 @@ public class Villager : MonoBehaviour
     {
         if (state == State.leading)
         {
-            playerInput.RemoveControlledVillager(gameObject);
+            playerInput.RemoveLeaderIfPresent(gameObject);
         }
     }
 
@@ -161,7 +161,7 @@ public class Villager : MonoBehaviour
     public void SetToLeader()
     {
         state = State.leading;
-        playerInput.SetControlledVillager(gameObject);
+        playerInput.SetLeader(gameObject);
     }
 
     public void SetToFollow()

@@ -10,7 +10,7 @@ public class PlayerInput : MonoBehaviour
     private InputAction movement;
 
     [SerializeField]
-    private Camera cam;
+    private GameObject cam;
     private NavMeshAgent agent;
     [SerializeField]
     [Range(0, 0.99f)]
@@ -19,19 +19,19 @@ public class PlayerInput : MonoBehaviour
     private Vector3 targetDirection;
     private float lerpTime = 0;
     [SerializeField]
-    [Range(0,100)]
+    [Range(0, 100)]
     private float targetLerpSpeed = 1;
     private Vector3 LastDirection;
     private Vector3 movementVector;
-    public GameObject controlledVillager;
+    public GameObject leader;
 
     private void Awake()
-    {
-        if (controlledVillager == null)
+    {   
+        if (leader == null)
         {
             Debug.Log("Leader is null");
         }
-        agent = controlledVillager.GetComponent<NavMeshAgent>();
+        agent = leader.GetComponent<NavMeshAgent>();
         leaderActionMap = inputActions.FindActionMap("Leader");
         movement = leaderActionMap.FindAction("Move");
         movement.started += HandleMovementAction;
@@ -42,11 +42,6 @@ public class PlayerInput : MonoBehaviour
         inputActions.Enable();
     }
 
-    private void Start()
-    {
-        
-    }
-
     private void HandleMovementAction(InputAction.CallbackContext ctx)
     {
         Vector2 input = ctx.ReadValue<Vector2>();
@@ -54,15 +49,6 @@ public class PlayerInput : MonoBehaviour
     }
     private void Update()
     {
-/*        if(agent == null)
-        {
-
-            if (controlledVillager)
-            {
-                agent = controlledVillager.GetComponent<NavMeshAgent>();
-            }
-        }*/
-
         agent.avoidancePriority = 1;
         VectorUpdate();
         MovementUpdate();
@@ -71,6 +57,7 @@ public class PlayerInput : MonoBehaviour
 
     private void VectorUpdate()
     {
+
         var forward = cam.transform.forward;
         var right = cam.transform.right;
         forward.y = 0f;
@@ -85,38 +72,34 @@ public class PlayerInput : MonoBehaviour
         }
         LastDirection = movementVector;
         targetDirection = Vector3.Lerp(targetDirection, movementVector, Mathf.Clamp01(lerpTime * targetLerpSpeed * (1 - smoothing)));
-        Debug.Log($"MovementVector: {movementVector}");
-        Debug.Log($"TargetDirection: {targetDirection}");
-        Debug.Log($"LastDirection: {LastDirection}");
     }
     private void MovementUpdate()
     {
-        if (controlledVillager != null)
+        if (leader != null)
         {
-            Debug.Assert(agent);
             agent.Move(targetDirection * agent.speed * Time.deltaTime);
             Vector3 lookDirection = movementVector;
             if (lookDirection != Vector3.zero)
             {
-                controlledVillager.transform.rotation = Quaternion.Lerp(controlledVillager.transform.rotation, Quaternion.LookRotation(lookDirection), Mathf.Clamp01(lerpTime * targetLerpSpeed * (1 - smoothing)));
+                leader.transform.rotation = Quaternion.Lerp(leader.transform.rotation, Quaternion.LookRotation(lookDirection), Mathf.Clamp01(lerpTime * targetLerpSpeed * (1 - smoothing)));
             }
         }
+
     }
 
-    public void SetControlledVillager(GameObject toControl)
+    public void SetLeader(GameObject newLeader)
     {
-        if (controlledVillager != toControl)
+        if (leader != newLeader)
         {
-            controlledVillager = toControl;
+            leader = newLeader;
         }
     }
 
-    public void RemoveControlledVillager(GameObject obj)
+    public void RemoveLeaderIfPresent(GameObject obj)
     {
-        if (controlledVillager == obj)
+        if (leader == obj)
         {
-            controlledVillager = null;
+            leader = null;
         }
     }
-
 }
