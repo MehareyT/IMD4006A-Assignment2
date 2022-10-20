@@ -5,7 +5,6 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    public GameObject Leader;
     public enum GameState
     {
         Menu,
@@ -15,7 +14,7 @@ public class GameManager : MonoBehaviour
         OverView,
         InControl
     }
-    public static GameState gameState;
+    [SerializeField] public GameState gameState;
 
     private void Awake()
     {
@@ -42,11 +41,36 @@ public class GameManager : MonoBehaviour
         //UnitGroup unitGroup = new UnitGroup(transform);
     }
 
-    public void SetLeader()
+    public void SetToMenu()
     {
-        
+        gameState = GameState.Menu;
     }
 
+    public void SetToPause()
+    {
+        gameState = GameState.Pause;
+    }
+
+    public void SetToGameOver()
+    {
+        gameState = GameState.GameOver;
+    }
+
+    public void SetToVictory()
+    {
+        gameState = GameState.Victory;
+    }
+
+    public void SetToOverView()
+    {
+        gameState = GameState.OverView;
+
+    }
+
+    public void SetToInControl()
+    {
+        gameState = GameState.InControl;
+    }
 
     /// <returns>Returns true if the game state == Menu </returns>
     public bool IsMenu()

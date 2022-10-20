@@ -4,10 +4,13 @@ using UnityEngine.InputSystem;
 
 public class PlayerInput : MonoBehaviour
 {
+    GameManager gameManager;
     [SerializeField]
     private InputActionAsset inputActions;
     private InputActionMap leaderActionMap;
     private InputAction movement;
+
+    private InputAction mousePositionAction;
 
     [SerializeField]
     private GameObject cam;
@@ -25,6 +28,8 @@ public class PlayerInput : MonoBehaviour
     private Vector3 movementVector;
     public GameObject leader;
 
+    LayerMask unitMask = 6;
+
     private void Awake()
     {   
         if (leader == null)
@@ -38,26 +43,52 @@ public class PlayerInput : MonoBehaviour
         movement.performed += HandleMovementAction;
         movement.canceled += HandleMovementAction;
         movement.Enable();
+
+        mousePositionAction = leaderActionMap.FindAction("MousePositon");
         leaderActionMap.Enable();
         inputActions.Enable();
     }
 
+
+
+    private void Start()
+    {
+        gameManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
+    }
     private void HandleMovementAction(InputAction.CallbackContext ctx)
     {
         Vector2 input = ctx.ReadValue<Vector2>();
         movementVector = new Vector3(input.x, 0, input.y);
     }
+
+
+
     private void Update()
     {
-        agent.avoidancePriority = 1;
-        VectorUpdate();
-        MovementUpdate();
+        if (gameManager)
+        {
+            if (gameManager.IsInControl())
+            {
+                agent.avoidancePriority = 1;
+                VectorUpdate();
+                MovementUpdate();
+            }
+            else if(gameManager.IsOverView())
+            {
+                if (Input.GetMouseButton(0))
+                {
+                    GetMouseCollision();
+                }
+            }
+
+
+        }
+
         lerpTime += Time.deltaTime;
     }
 
     private void VectorUpdate()
     {
-
         var forward = cam.transform.forward;
         var right = cam.transform.right;
         forward.y = 0f;
@@ -102,4 +133,18 @@ public class PlayerInput : MonoBehaviour
             leader = null;
         }
     }
+
+    void GetMouseCollision()
+    {
+        Vector3 mousePosition = new Vector3(0, 0, float.NegativeInfinity);
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out RaycastHit raycastHit, float.MaxValue, unitMask))
+        {
+            Debug.Log($"{raycastHit.collider.gameObject.name}");
+        }
+
+    }
+
+
+
 }
