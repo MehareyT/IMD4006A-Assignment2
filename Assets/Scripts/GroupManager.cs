@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GroupManager : MonoBehaviour
 {
-
+    UnitGroup activeGroup;
     List<UnitGroup> unitGroups = new List<UnitGroup>();
     // Start is called before the first frame update
     void Start()
@@ -37,4 +37,24 @@ public class GroupManager : MonoBehaviour
         if (unitGroups.Contains(toRemove))
             unitGroups.Remove(toRemove);
     }
+
+
+
+    /// <summary>
+    /// Sets the active group for the group manager
+    /// </summary>
+    /// <param name="unitGroup"> group to set as the active group</param>
+    public void SetActiveGroup(UnitGroup unitGroup)
+    {
+        activeGroup = unitGroup;
+    }
+
+    /// <summary>
+    /// Sets null as the active group
+    /// </summary>
+    public void RemoveActiveGroup()
+    {
+        activeGroup = null;
+    }
+
 }

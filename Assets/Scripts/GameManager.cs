@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
         Pause,
         GameOver,
         Victory,
-        OverView,
+        Overview,
         InControl
     }
     [SerializeField] public GameState gameState;
@@ -61,9 +61,9 @@ public class GameManager : MonoBehaviour
         gameState = GameState.Victory;
     }
 
-    public void SetToOverView()
+    public void SetToOverview()
     {
-        gameState = GameState.OverView;
+        gameState = GameState.Overview;
 
     }
 
@@ -97,9 +97,9 @@ public class GameManager : MonoBehaviour
     }
 
     /// <returns>Returns true if the game state == OverView </returns>
-    public bool IsOverView()
+    public bool IsOverview()
     {
-        return gameState == GameState.OverView ? true : false;
+        return gameState == GameState.Overview ? true : false;
     }
 
     /// <returns>Returns true if the game state == InControl </returns>

@@ -74,27 +74,8 @@ public class Villager : MonoBehaviour
         }
 
     }
-    private void OnTriggerEnter(Collider other)
-    {
-        //If it was triggered by a villager
-        if (other.GetComponentInParent<Villager>())
-        {
-            Villager v = other.GetComponentInParent<Villager>();
-            AddNeighbour(v);
-        }
 
-    }
 
-    private void OnTriggerExit(Collider other)
-    {
-        //If the leaving object is a villager
-        if (other.GetComponentInParent<Villager>())
-        {
-            Villager v = other.GetComponentInParent<Villager>();
-            RemoveNeighbour(v);
-        }
-
-    }
     /// <summary>
     /// Sets the group that the villager belongs to. 
     /// </summary>
@@ -142,12 +123,12 @@ public class Villager : MonoBehaviour
     {
         if (state == State.leading)
         {
-            playerInput.RemoveLeaderIfPresent(gameObject);
+            playerInput.RemoveUnitIfPresent(gameObject);
         }
     }
 
     public void SetToIdle()
-    {
+    { 
         CheckAndRemoveLeadership();
         state = State.idling;
     }
@@ -161,7 +142,7 @@ public class Villager : MonoBehaviour
     public void SetToLeader()
     {
         state = State.leading;
-        playerInput.SetLeader(gameObject);
+        playerInput.SetUnit(gameObject);
     }
 
     public void SetToFollow()

@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 public class PlayerInput : MonoBehaviour
 {
     GameManager gameManager;
+    GroupManager groupManager;
     [SerializeField]
     private InputActionAsset inputActions;
     private InputActionMap leaderActionMap;
@@ -26,7 +27,7 @@ public class PlayerInput : MonoBehaviour
     private float targetLerpSpeed = 1;
     private Vector3 LastDirection;
     private Vector3 movementVector;
-    public GameObject leader;
+    public GameObject unit;
 
     public LayerMask unitMask;
 
@@ -36,9 +37,9 @@ public class PlayerInput : MonoBehaviour
 
     private void Awake()
     {
-        if (leader)
+        if (unit)
         {
-            agent = leader.GetComponent<NavMeshAgent>();
+            agent = unit.GetComponent<NavMeshAgent>();
         }
 
         
@@ -81,6 +82,9 @@ public class PlayerInput : MonoBehaviour
     private void Start()
     {
         gameManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
+        groupManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<GroupManager>();
+        Debug.Assert(gameManager);
+        Debug.Assert(groupManager);
     }
     private void HandleMovementAction(InputAction.CallbackContext ctx)
     {
@@ -92,9 +96,9 @@ public class PlayerInput : MonoBehaviour
 
     private void Update()
     {
-        if (leader)
+        if (unit)
         {
-            agent = leader.GetComponent<NavMeshAgent>();
+            agent = unit.GetComponent<NavMeshAgent>();
         }
         if (gameManager)
         {
@@ -104,7 +108,7 @@ public class PlayerInput : MonoBehaviour
                 VectorUpdate();
                 MovementUpdate();
             }
-            else if(gameManager.IsOverView())
+            else if(gameManager.IsOverview())
             {
                 if (Input.GetMouseButton(0))
                 {
@@ -117,6 +121,11 @@ public class PlayerInput : MonoBehaviour
                             //the way i have it set up to set the leader is going to cause an issue when it comes to having multiple groups
                             col.GetComponent<Villager>().SetToLeader();
                             gameManager.SetToInControl();
+                            //If the viller that the player clicked on has a unit group already then set that group to the active group in the group manager;
+                            if (col.GetComponent<Villager>().GetUnitGroup() != null)
+                            {
+                                groupManager.SetActiveGroup(col.GetComponent<Villager>().GetUnitGroup()); 
+                            }
                         }
                         
                     }
@@ -148,34 +157,35 @@ public class PlayerInput : MonoBehaviour
     }
     private void MovementUpdate()
     {
-        if (leader != null)
+        if (unit != null)
         {
             agent.Move(targetDirection * agent.speed * Time.deltaTime);
             Vector3 lookDirection = movementVector;
             if (lookDirection != Vector3.zero)
             {
-                leader.transform.rotation = Quaternion.Lerp(leader.transform.rotation, Quaternion.LookRotation(lookDirection), Mathf.Clamp01(lerpTime * targetLerpSpeed * (1 - smoothing)));
+                unit.transform.rotation = Quaternion.Lerp(unit.transform.rotation, Quaternion.LookRotation(lookDirection), Mathf.Clamp01(lerpTime * targetLerpSpeed * (1 - smoothing)));
             }
         }
 
     }
 
-    public void SetLeader(GameObject newLeader)
+    public void SetUnit(GameObject newLeader)
     {
-        if (leader != newLeader)
+        if (unit != newLeader)
         {
-            leader = newLeader;
+            unit = newLeader;
         }
     }
 
-    public void RemoveLeaderIfPresent(GameObject obj)
+    public void RemoveUnitIfPresent(GameObject obj)
     {
-        if (leader == obj)
+        if (unit == obj)
         {
-            leader = null;
+            unit = null;
         }
     }
 
+    /// <returns>returns the game object that the mouse collides with if it is on the unit layer</returns>
     GameObject GetMouseCollision()
     {
         Vector3 mousePosition = new Vector3(0, 0, float.NegativeInfinity);
@@ -192,7 +202,7 @@ public class PlayerInput : MonoBehaviour
     {
         if (gameManager.IsInControl())
         {
-            gameManager.SetToOverView();
+            gameManager.SetToOverview();
         }
     }
 
