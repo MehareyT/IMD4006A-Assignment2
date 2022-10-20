@@ -9,8 +9,8 @@ public class PlayerInput : MonoBehaviour
     private InputActionAsset inputActions;
     private InputActionMap leaderActionMap;
     private InputAction movement;
-
     private InputAction mousePositionAction;
+    private InputAction denyAction;
 
     [SerializeField]
     private GameObject cam;
@@ -28,15 +28,20 @@ public class PlayerInput : MonoBehaviour
     private Vector3 movementVector;
     public GameObject leader;
 
-    LayerMask unitMask = 6;
+    public LayerMask unitMask;
+
+    Vector2 mousePos = new Vector2();
+
+
 
     private void Awake()
-    {   
-        if (leader == null)
+    {
+        if (leader)
         {
-            Debug.Log("Leader is null");
+            agent = leader.GetComponent<NavMeshAgent>();
         }
-        agent = leader.GetComponent<NavMeshAgent>();
+
+        
         leaderActionMap = inputActions.FindActionMap("Leader");
         movement = leaderActionMap.FindAction("Move");
         movement.started += HandleMovementAction;
@@ -44,12 +49,34 @@ public class PlayerInput : MonoBehaviour
         movement.canceled += HandleMovementAction;
         movement.Enable();
 
-        mousePositionAction = leaderActionMap.FindAction("MousePositon");
+
+        mousePositionAction = leaderActionMap.FindAction("MousePosition");
+        mousePositionAction.started += HandleMousePosition;
+        mousePositionAction.performed += HandleMousePosition;
+        mousePositionAction.canceled += HandleMousePosition;
+        mousePositionAction.Enable();
+
+        denyAction = leaderActionMap.FindAction("Deny");
+        denyAction.started += HandleDenyAction;
+        denyAction.performed += HandleDenyAction;
+        denyAction.canceled += HandleDenyAction;
+
+
+
+
         leaderActionMap.Enable();
         inputActions.Enable();
     }
 
+    private void HandleDenyAction(InputAction.CallbackContext obj)
+    {
+        Deny();
+    }
 
+    private void HandleMousePosition(InputAction.CallbackContext obj)
+    {
+        mousePos = obj.ReadValue<Vector2>();
+    }
 
     private void Start()
     {
@@ -65,6 +92,10 @@ public class PlayerInput : MonoBehaviour
 
     private void Update()
     {
+        if (leader)
+        {
+            agent = leader.GetComponent<NavMeshAgent>();
+        }
         if (gameManager)
         {
             if (gameManager.IsInControl())
@@ -77,7 +108,18 @@ public class PlayerInput : MonoBehaviour
             {
                 if (Input.GetMouseButton(0))
                 {
-                    GetMouseCollision();
+                    if (GetMouseCollision())
+                    {
+                        GameObject col = GetMouseCollision();
+
+                        if (col.GetComponent<Villager>())
+                        {
+                            //the way i have it set up to set the leader is going to cause an issue when it comes to having multiple groups
+                            col.GetComponent<Villager>().SetToLeader();
+                            gameManager.SetToInControl();
+                        }
+                        
+                    }
                 }
             }
 
@@ -134,17 +176,24 @@ public class PlayerInput : MonoBehaviour
         }
     }
 
-    void GetMouseCollision()
+    GameObject GetMouseCollision()
     {
         Vector3 mousePosition = new Vector3(0, 0, float.NegativeInfinity);
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Ray ray = Camera.main.ScreenPointToRay(mousePos);
         if (Physics.Raycast(ray, out RaycastHit raycastHit, float.MaxValue, unitMask))
         {
-            Debug.Log($"{raycastHit.collider.gameObject.name}");
+            return raycastHit.collider.gameObject;
         }
+        else return null;
 
     }
 
-
+    void Deny()
+    {
+        if (gameManager.IsInControl())
+        {
+            gameManager.SetToOverView();
+        }
+    }
 
 }
