@@ -12,6 +12,8 @@ public class PlayerInput : MonoBehaviour
     private InputAction movement;
     private InputAction mousePositionAction;
     private InputAction denyAction;
+    private InputAction contextAction;
+
 
     [SerializeField]
     private GameObject cam;
@@ -28,7 +30,7 @@ public class PlayerInput : MonoBehaviour
     private Vector3 LastDirection;
     private Vector3 movementVector;
     public GameObject unit;
-
+    public GameObject hiddenLeader;
     public LayerMask unitMask;
 
     Vector2 mousePos = new Vector2();
@@ -62,11 +64,22 @@ public class PlayerInput : MonoBehaviour
         denyAction.performed += HandleDenyAction;
         denyAction.canceled += HandleDenyAction;
 
-
+        contextAction = leaderActionMap.FindAction("ContextAction");
+        contextAction.started += HandleContextAction;
+        contextAction.performed += HandleContextAction;
+        contextAction.canceled += HandleContextAction;
 
 
         leaderActionMap.Enable();
         inputActions.Enable();
+    }
+
+    private void HandleContextAction(InputAction.CallbackContext obj)
+    {
+        if (gameManager.IsInControl())
+        {
+            unit.GetComponent<Villager>().Rally();
+        }
     }
 
     private void HandleDenyAction(InputAction.CallbackContext obj)
@@ -122,9 +135,20 @@ public class PlayerInput : MonoBehaviour
                             col.GetComponent<Villager>().SetToLeader();
                             gameManager.SetToInControl();
                             //If the viller that the player clicked on has a unit group already then set that group to the active group in the group manager;
+                            
                             if (col.GetComponent<Villager>().GetUnitGroup() != null)
                             {
-                                groupManager.SetActiveGroup(col.GetComponent<Villager>().GetUnitGroup()); 
+                                groupManager.SetActiveGroup(col.GetComponent<Villager>().GetUnitGroup());
+                            }
+                            else
+                            {
+
+                                GameObject hl = Instantiate(hiddenLeader, col.gameObject.transform.position, Quaternion.identity);
+                                hl.name = "Hidden Leader";
+                                UnitGroup unitGroup = new UnitGroup(hl.transform, col, groupManager);
+                                groupManager.AddGroup(unitGroup);
+                                groupManager.SetActiveGroup(unitGroup);
+                                col.GetComponent<Villager>().SetUnitGroup(unitGroup);
                             }
                         }
                         
@@ -205,5 +229,8 @@ public class PlayerInput : MonoBehaviour
             gameManager.SetToOverview();
         }
     }
+
+
+
 
 }

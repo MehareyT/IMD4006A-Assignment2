@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Serialization;
 
-public class UnitGroup : MonoBehaviour
+[System.Serializable]
+public class UnitGroup 
 {
+    GroupManager groupManager;
     /// <summary> The leader is the transform the group will follow. </summary>
     public Transform hiddenLeader;
     
@@ -19,10 +22,23 @@ public class UnitGroup : MonoBehaviour
     /// </summary>
     /// <param name="hiddenLeader">The hiddenLeader is the transorm the group will follow.</param>
     /// <param name="unitLeader">The unit that is designated as Leader</param>
-    public UnitGroup(Transform hiddenLeader, GameObject unitLeader) {
+    public UnitGroup(Transform hiddenLeader, GameObject unitLeader, GroupManager groupManager) {
         this.hiddenLeader = hiddenLeader;
         this.unitLeader = unitLeader;
+        this.groupManager = groupManager;
         AddUnit(unitLeader);
+    }
+
+    public UnitGroup(Transform hiddenLeader, GameObject unitLeader, GroupManager groupManager, List<GameObject> units)
+    {
+        this.hiddenLeader = hiddenLeader;
+        this.unitLeader = unitLeader;
+        this.groupManager = groupManager;
+        AddUnit(unitLeader);
+        foreach(GameObject item in units)
+        {
+            AddUnit(item);
+        }
     }
     
     ~UnitGroup()
@@ -53,12 +69,19 @@ public class UnitGroup : MonoBehaviour
         }
     }
 
-    void Update()
+    //NEEDS TO BE CALLED EVEY FRAME (UPDATE) BY GROUPMANAGER
+    public void Update()
     {
         if (unitLeader)
         {
             UpdateLeaderPosition();
             UpdateUnitDestinations();
+        }
+        if (units.Count <= 0)
+        {
+            Debug.Log("Destroying Unit Group");
+            Debug.Assert(groupManager);
+            groupManager.RemoveGroup(this);
         }
          
     }
@@ -79,6 +102,7 @@ public class UnitGroup : MonoBehaviour
     {
         hiddenLeader.position = unitLeader.transform.position;
     }
+
 
     
 

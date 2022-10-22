@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class GroupManager : MonoBehaviour
 {
+    [SerializeField]
     UnitGroup activeGroup;
+    
+    [SerializeField]
     List<UnitGroup> unitGroups = new List<UnitGroup>();
     // Start is called before the first frame update
     void Start()
@@ -15,7 +18,10 @@ public class GroupManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        foreach(UnitGroup item in unitGroups)
+        {
+            item.Update();
+        }
     }
 
     /// <summary>
@@ -56,5 +62,46 @@ public class GroupManager : MonoBehaviour
     {
         activeGroup = null;
     }
+
+    /// <summary>
+    /// Combines two unit groups together to create a third one. 
+    /// </summary>
+    /// <param name="groupA"></param>
+    /// <param name="groupB"></param>
+    /// <param name="unitLeader"></param>
+    /// <param name="hiddenLeader"></param>
+    /// <returns></returns>
+    public UnitGroup CombineGroups(UnitGroup groupA, UnitGroup groupB, GameObject unitLeader, Transform hiddenLeader)
+    {
+        
+        List<GameObject> l = new List<GameObject>();
+        foreach(GameObject item in groupA.units)
+        {
+            if(!l.Contains(item))
+                l.Add(item);
+        }
+        foreach (GameObject item in groupB.units)
+        {
+            if (!l.Contains(item))
+                l.Add(item);
+        }
+        UnitGroup newGroup = new UnitGroup(hiddenLeader, unitLeader, this, l);
+        foreach(GameObject item in l)
+        {
+            item.GetComponent<Villager>().SetUnitGroup(newGroup);
+        }
+        if(groupA.hiddenLeader != hiddenLeader)
+        {
+            Destroy(groupA.hiddenLeader);
+        }
+        if(groupB.hiddenLeader != hiddenLeader)
+        {
+            Destroy(groupB.hiddenLeader);
+        }
+        groupA.units.Clear();
+        groupB.units.Clear();
+        return newGroup;
+    }
+
 
 }

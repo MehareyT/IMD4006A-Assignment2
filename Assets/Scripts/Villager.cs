@@ -8,9 +8,8 @@ public class Villager : MonoBehaviour
     /// <summary> The unit group that this unit belongs to </summary>
     private UnitGroup unitGroup;
     public PlayerInput playerInput;
+    GroupManager groupManager;
     NavMeshAgent agent;
-
-
 
     public List<Villager> neighbours = new List<Villager>();
     /// <summary>
@@ -25,7 +24,7 @@ public class Villager : MonoBehaviour
         attacking,
         dead
     }
-    
+
     ///<summary> The state that the villager is in. </summary>
     [SerializeField] private State state = State.idling;
 
@@ -35,7 +34,9 @@ public class Villager : MonoBehaviour
     void Start()
     {
         playerInput = GameObject.FindGameObjectWithTag("GameController").GetComponent<PlayerInput>();
+        groupManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<GroupManager>();
         agent = GetComponent<NavMeshAgent>();
+        neighbours.Clear();
     }
 
     // Update is called once per frame
@@ -57,11 +58,12 @@ public class Villager : MonoBehaviour
                 {
                     avg = Quaternion.Slerp(gameObject.transform.rotation, neighbours[0].transform.rotation, 0.5f);
                 }
-                else if (neighbours.Count > 1)
+                else if (neighbours.Count >= 1)
                 {
                     foreach (Villager item in neighbours)
                     {
-                        avg = MyMath.AverageQuaternion(ref cumulative, item.transform.rotation, gameObject.transform.rotation, neighbours.Count);
+                        if(item!= null)
+                            avg = MyMath.AverageQuaternion(ref cumulative, item.transform.rotation, gameObject.transform.rotation, neighbours.Count);
                     }
                     gameObject.transform.rotation = avg;
                 }
@@ -108,10 +110,10 @@ public class Villager : MonoBehaviour
     /// <param name="toRemove">The villager that is no longer a neighbour</param>
     public void RemoveNeighbour(Villager toRemove)
     {
-        if (neighbours.Contains(toRemove))
-        {
-            neighbours.Remove(toRemove);
-        }
+        //if (neighbours.Contains(toRemove))
+        //{
+        neighbours.Remove(toRemove);
+        // }
     }
 
 
@@ -128,7 +130,7 @@ public class Villager : MonoBehaviour
     }
 
     public void SetToIdle()
-    { 
+    {
         CheckAndRemoveLeadership();
         state = State.idling;
     }
@@ -186,4 +188,43 @@ public class Villager : MonoBehaviour
     {
         return state == State.patroling ? true : false;
     }
+
+    public void Rally()
+    {
+        Debug.Log("Rally!");
+        if (IsLeading())
+        {
+            if (neighbours.Count > 0)
+            {
+                Debug.Assert(unitGroup != null);
+                
+                foreach (Villager item in neighbours)
+                {
+                    if (item != null)
+                    {
+                        if (item.GetUnitGroup() == unitGroup && unitGroup != null)
+                        {
+                            //neighbour is already in your group
+                            Debug.Log("neighbour is already in your group");
+                        }
+                        else
+                        {
+                            if (item.GetUnitGroup() == null)
+                            {
+                                unitGroup.AddUnit(item.gameObject);
+                                item.SetToFollow();
+                                item.SetUnitGroup(unitGroup);
+                            }
+                            else if (item.GetUnitGroup() != null)
+                            {
+                                Debug.Log("will combine");
+                                groupManager.CombineGroups(unitGroup, item.GetUnitGroup(), gameObject, unitGroup.hiddenLeader);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
+

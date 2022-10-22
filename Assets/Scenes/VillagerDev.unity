@@ -159,7 +159,9 @@ MonoBehaviour:
   cam: {fileID: 505109096}
   smoothing: 0.1
   targetLerpSpeed: 1
-  leader: {fileID: 0}
+  unit: {fileID: 0}
+  hiddenLeader: {fileID: 1428679080375080768, guid: defdddb05f369dc4597e86aa716894ba,
+    type: 3}
   unitMask:
     serializedVersion: 2
     m_Bits: 64
@@ -190,6 +192,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcfc60888f8dbf347b772b9c19f71b34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  activeGroup:
+    hiddenLeader: {fileID: 0}
+    unitLeader: {fileID: 0}
+    units: []
+  unitGroups: []
 --- !u!114 &103906313
 MonoBehaviour:
   m_ObjectHideFlags: 0
