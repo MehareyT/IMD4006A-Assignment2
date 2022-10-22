@@ -134,17 +134,34 @@ public class PlayerInput : MonoBehaviour
                             //the way i have it set up to set the leader is going to cause an issue when it comes to having multiple groups
                             col.GetComponent<Villager>().SetToLeader();
                             gameManager.SetToInControl();
-                            //If the viller that the player clicked on has a unit group already then set that group to the active group in the group manager;
+                           
                             
+                            //If the viller that the player clicked on has a unit group already then set that group to the active group in the group manager;
                             if (col.GetComponent<Villager>().GetUnitGroup() != null)
                             {
                                 groupManager.SetActiveGroup(col.GetComponent<Villager>().GetUnitGroup());
+
+                                //Change the leader in the unitgroup class
+                                //this is super important because without it, the units will all be told by the unit group to follow the old leader.
+                                col.GetComponent<Villager>().GetUnitGroup().ChangeUnitLeader(col);
+                                col.GetComponent<Villager>().GetUnitGroup().StopDestinations();
+                                foreach (GameObject item in groupManager.GetActiveGroup().units)
+                                {
+                                    if(item != col)
+                                    {
+                                        if (item.GetComponent<Villager>().IsFollowing() != true)
+                                        {
+                                            item.GetComponent<Villager>().SetToFollow();
+                                        }
+                                    }
+                                }
                             }
                             else
                             {
 
                                 GameObject hl = Instantiate(hiddenLeader, col.gameObject.transform.position, Quaternion.identity);
                                 hl.name = "Hidden Leader";
+                                hl.GetComponent<HiddenLeader>().unitLeader = col;
                                 UnitGroup unitGroup = new UnitGroup(hl.transform, col, groupManager);
                                 groupManager.AddGroup(unitGroup);
                                 groupManager.SetActiveGroup(unitGroup);

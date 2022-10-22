@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class GroupManager : MonoBehaviour
 {
@@ -44,7 +45,10 @@ public class GroupManager : MonoBehaviour
             unitGroups.Remove(toRemove);
     }
 
-
+    public UnitGroup GetActiveGroup()
+    {
+        return activeGroup;
+    }
 
     /// <summary>
     /// Sets the active group for the group manager
@@ -100,6 +104,20 @@ public class GroupManager : MonoBehaviour
         }
         groupA.units.Clear();
         groupB.units.Clear();
+        
+        foreach(GameObject item in newGroup.units)
+        {
+            item.GetComponent<NavMeshAgent>().ResetPath();
+            if(item!= newGroup.unitLeader)
+            {
+                if (!item.GetComponent<Villager>().IsFollowing())
+                {
+                    item.GetComponent<Villager>().SetToFollow();
+                }
+            }
+            
+        }
+
         return newGroup;
     }
 

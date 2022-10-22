@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
+
 
 public class Villager : MonoBehaviour
 {
@@ -10,6 +12,11 @@ public class Villager : MonoBehaviour
     public PlayerInput playerInput;
     GroupManager groupManager;
     NavMeshAgent agent;
+
+
+    //For Debugging
+    public TMPro.TextMeshProUGUI textMesh;
+    
 
     public List<Villager> neighbours = new List<Villager>();
     /// <summary>
@@ -42,6 +49,10 @@ public class Villager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (textMesh != null)
+        {
+            textMesh.text = agent.destination.ToString();
+        }
         switch (state)
         {
             case State.idling:
@@ -49,9 +60,16 @@ public class Villager : MonoBehaviour
             case State.patroling:
                 break;
             case State.leading:
+                if(agent.avoidancePriority!= 2)
+                {
+                    agent.avoidancePriority = 2;
+                }
                 break;
             case State.following:
-
+                if (agent.avoidancePriority != 50)
+                {
+                    agent.avoidancePriority = 50;
+                }
                 Vector4 cumulative = new Vector4();
                 Quaternion avg = Quaternion.identity;
                 if (neighbours.Count == 1)

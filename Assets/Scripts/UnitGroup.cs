@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Serialization;
 
+
+//This allows unity to put the class in the inspector among other things
 [System.Serializable]
 public class UnitGroup 
 {
@@ -11,6 +13,7 @@ public class UnitGroup
     /// <summary> The leader is the transform the group will follow. </summary>
     public Transform hiddenLeader;
     
+    [SerializeField]
     /// <summary> playerUnit is the Unit that the player is in control of - this isn't always in the UnitGroup</summary>
     public GameObject unitLeader;
     
@@ -72,9 +75,8 @@ public class UnitGroup
     //NEEDS TO BE CALLED EVEY FRAME (UPDATE) BY GROUPMANAGER
     public void Update()
     {
-        if (unitLeader)
+        if (unitLeader!=null)
         {
-            UpdateLeaderPosition();
             UpdateUnitDestinations();
         }
         if (units.Count <= 0)
@@ -98,13 +100,19 @@ public class UnitGroup
         }
     }
 
-    void UpdateLeaderPosition()
+    public void ChangeUnitLeader(GameObject newLeader)
     {
-        hiddenLeader.position = unitLeader.transform.position;
+        unitLeader = newLeader;
+        hiddenLeader.GetComponent<HiddenLeader>().unitLeader = newLeader;
     }
-
-
     
+    public void StopDestinations()
+    {
+        foreach(GameObject item in units)
+        {
+            item.GetComponent<NavMeshAgent>().ResetPath();
 
+        }
+    }
 
 }
