@@ -131,6 +131,8 @@ public class PlayerInput : MonoBehaviour
 
                         if (col.GetComponent<Villager>())
                         {
+                            col.GetComponent<NavMeshAgent>().ResetPath();
+                            //col.GetComponent<NavMeshAgent>().SetDestination(col.transform.position);
                             //the way i have it set up to set the leader is going to cause an issue when it comes to having multiple groups
                             col.GetComponent<Villager>().SetToLeader();
                             gameManager.SetToInControl();
