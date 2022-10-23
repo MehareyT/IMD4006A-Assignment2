@@ -30,7 +30,8 @@ public class PlayerInput : MonoBehaviour
     private Vector3 LastDirection;
     private Vector3 movementVector;
     public GameObject unit;
-    public GameObject hiddenLeader;
+    public GameObject hiddenLeaderOriginal;
+    GameObject hiddenClone;
     public LayerMask unitMask;
 
     Vector2 mousePos = new Vector2();
@@ -161,10 +162,11 @@ public class PlayerInput : MonoBehaviour
                             else
                             {
 
-                                GameObject hl = Instantiate(hiddenLeader, col.gameObject.transform.position, Quaternion.identity);
-                                hl.name = "Hidden Leader";
-                                hl.GetComponent<HiddenLeader>().unitLeader = col;
-                                UnitGroup unitGroup = new UnitGroup(hl.transform, col, groupManager);
+                               
+                                hiddenClone = Instantiate(hiddenLeaderOriginal, col.gameObject.transform.position, Quaternion.identity);
+                                hiddenClone.name = "Hidden Leader";
+                                hiddenClone.GetComponent<HiddenLeader>().unitLeader = col;
+                                UnitGroup unitGroup = new UnitGroup(hiddenClone.transform, col, groupManager);
                                 groupManager.AddGroup(unitGroup);
                                 groupManager.SetActiveGroup(unitGroup);
                                 col.GetComponent<Villager>().SetUnitGroup(unitGroup);
@@ -197,16 +199,27 @@ public class PlayerInput : MonoBehaviour
         }
         LastDirection = movementVector;
         targetDirection = Vector3.Lerp(targetDirection, movementVector, Mathf.Clamp01(lerpTime * targetLerpSpeed * (1 - smoothing)));
+        
     }
     private void MovementUpdate()
     {
-        if (unit != null)
+        if (unit != null && hiddenClone != null)
         {
-            agent.Move(targetDirection * agent.speed * Time.deltaTime);
+            NavMeshHit hit;
+            bool blocked = false;
+            blocked = NavMesh.Raycast(hiddenClone.transform.position, hiddenClone.transform.position + (targetDirection * agent.speed * Time.deltaTime),out hit, NavMesh.AllAreas);
+            Debug.DrawLine(hiddenClone.transform.position, hiddenClone.transform.position + (targetDirection * agent.speed * Time.deltaTime), hit.mask == 0 ? Color.red: Color.green, 2f);
+            //Check to make sure that you are moving somewhere on the navmesh (hit.mask != 0 is checking for the edge of the mask)
+            if (hit.mask != 0)
+            {
+                hiddenClone.GetComponent<HiddenLeader>().Move(targetDirection, agent.speed);
+            }
+
             Vector3 lookDirection = movementVector;
             if (lookDirection != Vector3.zero)
             {
-                unit.transform.rotation = Quaternion.Lerp(unit.transform.rotation, Quaternion.LookRotation(lookDirection), Mathf.Clamp01(lerpTime * targetLerpSpeed * (1 - smoothing)));
+                //unit.transform.rotation = Quaternion.Lerp(unit.transform.rotation, Quaternion.LookRotation(lookDirection), Mathf.Clamp01(lerpTime * targetLerpSpeed * (1 - smoothing)));
+               
             }
         }
 

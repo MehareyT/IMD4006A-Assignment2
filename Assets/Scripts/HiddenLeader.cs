@@ -15,11 +15,19 @@ public class HiddenLeader : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = unitLeader.transform.position;
+
     }
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube(transform.position, new Vector3(1, 1, 1));
     }
+
+    public void Move(Vector3 vector, float speed)
+    {
+        transform.Translate((vector * speed * Time.deltaTime));
+        //transform.position = transform.position + (vector * speed *Time.deltaTime);
+    } 
+    
+
 }

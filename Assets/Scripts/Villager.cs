@@ -51,8 +51,20 @@ public class Villager : MonoBehaviour
     {
         if (textMesh != null)
         {
-            textMesh.text = agent.destination.ToString();
+            //textMesh.text = agent.destination.ToString();
+          
+            if (state == State.leading)
+            {
+                textMesh.text = "leader";
+            }else if (state == State.following)
+            {
+                textMesh.text = "follower";
+            } else
+            {
+                textMesh.text = "idle";
+            }
         }
+
         switch (state)
         {
             case State.idling:

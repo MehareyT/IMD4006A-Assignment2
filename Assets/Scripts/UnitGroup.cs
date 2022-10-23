@@ -92,10 +92,9 @@ public class UnitGroup
     {
         foreach(GameObject item in units)
         {
-            if (item != unitLeader)
-            {
-                item.GetComponent<NavMeshAgent>().destination = hiddenLeader.position;
-            }
+
+            item.GetComponent<NavMeshAgent>().destination = hiddenLeader.position;
+            
             
         }
     }

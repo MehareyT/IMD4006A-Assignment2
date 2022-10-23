@@ -160,7 +160,7 @@ MonoBehaviour:
   smoothing: 0.1
   targetLerpSpeed: 1
   unit: {fileID: 0}
-  hiddenLeader: {fileID: 1428679080375080768, guid: defdddb05f369dc4597e86aa716894ba,
+  hiddenLeaderOriginal: {fileID: 1428679080375080768, guid: defdddb05f369dc4597e86aa716894ba,
     type: 3}
   unitMask:
     serializedVersion: 2
