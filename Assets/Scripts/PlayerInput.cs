@@ -185,8 +185,8 @@ public class PlayerInput : MonoBehaviour
 
     private void VectorUpdate()
     {
-        var forward = cam.transform.forward;
-        var right = cam.transform.right;
+        var forward = cam.GetComponentInParent<Transform>().forward;
+        var right = cam.GetComponentInParent<Transform>().right;
         forward.y = 0f;
         right.y = 0f;
         forward.Normalize();
