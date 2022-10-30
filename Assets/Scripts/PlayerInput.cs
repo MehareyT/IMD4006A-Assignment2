@@ -29,6 +29,7 @@ public class PlayerInput : MonoBehaviour
     private float targetLerpSpeed = 1;
     private Vector3 LastDirection;
     private Vector3 movementVector;
+    private Vector2 moveInput;
     public GameObject unit;
     public GameObject hiddenLeaderOriginal;
     GameObject hiddenClone;
@@ -103,10 +104,10 @@ public class PlayerInput : MonoBehaviour
     private void HandleMovementAction(InputAction.CallbackContext ctx)
     {
         Vector2 input = ctx.ReadValue<Vector2>();
-        movementVector = new Vector3(input.x, 0, input.y);
+        moveInput = input;
+
+
     }
-
-
 
     private void Update()
     {
@@ -185,13 +186,16 @@ public class PlayerInput : MonoBehaviour
 
     private void VectorUpdate()
     {
-        var forward = cam.GetComponentInParent<Transform>().forward;
-        var right = cam.GetComponentInParent<Transform>().right;
+        var forward = cam.transform.forward;
+        var right = cam.transform.right;
         forward.y = 0f;
         right.y = 0f;
         forward.Normalize();
         right.Normalize();
-        movementVector = (forward * movementVector.z + right * movementVector.x);
+
+        Debug.Log($"Forward = {forward} || Right = {right}");
+
+        movementVector = (forward * moveInput.y + right * moveInput.x);
         movementVector.Normalize();
         if (movementVector != LastDirection)
         {
@@ -214,7 +218,6 @@ public class PlayerInput : MonoBehaviour
             {
                 hiddenClone.GetComponent<HiddenLeader>().Move(targetDirection, agent.speed);
             }
-
             Vector3 lookDirection = movementVector;
             if (lookDirection != Vector3.zero)
             {
