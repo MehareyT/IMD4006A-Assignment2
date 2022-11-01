@@ -419,6 +419,7 @@ GameObject:
   - component: {fileID: 721060369303792478}
   - component: {fileID: 8157141158065196705}
   - component: {fileID: 8308410607932771239}
+  - component: {fileID: 7291436913752968512}
   - component: {fileID: 661886128}
   m_Layer: 6
   m_Name: Unit
@@ -547,6 +548,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &7291436913752968512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7594338411281088915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 849336954a6e2d7428bc76e1e53dd0c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attack: {fileID: 5396768105844979800, guid: 3698d8e714e3d8c439e59aca369aa844, type: 3}
+  cooldown: 0.8
 --- !u!114 &661886128
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -560,6 +575,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerInput: {fileID: 0}
+  attackRange: 0
+  fleeRange: 0
+  enemy: {fileID: 0}
   textMesh: {fileID: 3030005056511419586}
   neighbours: []
   state: 0

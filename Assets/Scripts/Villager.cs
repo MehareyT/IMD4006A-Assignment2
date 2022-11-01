@@ -22,6 +22,9 @@ public class Villager : MonoBehaviour
     /// <summary> The enemy the units will use to check distance </summary>
     public Transform enemy;
 
+    /// <summary> The villagers attack script </summary>
+    VillagerAttack villagerAttack;
+
 
     //For Debugging
     public TMPro.TextMeshProUGUI textMesh;
@@ -52,6 +55,7 @@ public class Villager : MonoBehaviour
     {
         playerInput = GameObject.FindGameObjectWithTag("GameController").GetComponent<PlayerInput>();
         groupManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<GroupManager>();
+        villagerAttack = GetComponent<VillagerAttack>();
         agent = GetComponent<NavMeshAgent>();
         neighbours.Clear();
     }
@@ -111,6 +115,7 @@ public class Villager : MonoBehaviour
                 if(Vector3.Distance(transform.position,enemy.transform.position) > attackRange){
                     state = State.following;
                 }
+                villagerAttack.Attack(enemy);
                 Follow();
                 break;
             case State.dead:
