@@ -13,6 +13,15 @@ public class Villager : MonoBehaviour
     GroupManager groupManager;
     NavMeshAgent agent;
 
+    /// <summary> The radius the unit will see the enemy and start attacking it </summary>
+    public float attackRange;
+
+    /// <summary> The radius an idle unit will see the enemy and start running from it </summary>
+    public float fleeRange;
+
+    /// <summary> The enemy the units will use to check distance </summary>
+    public Transform enemy;
+
 
     //For Debugging
     public TMPro.TextMeshProUGUI textMesh;
@@ -26,6 +35,7 @@ public class Villager : MonoBehaviour
     {
         idling,
         patroling,
+        fleeing,
         leading,
         following,
         attacking,
@@ -59,6 +69,12 @@ public class Villager : MonoBehaviour
             }else if (state == State.following)
             {
                 textMesh.text = "follower";
+            }else if (state == State.attacking)
+            {
+                textMesh.text = "attacking";
+            }else if (state == State.fleeing)
+            {
+                textMesh.text = "fleeing";
             } else
             {
                 textMesh.text = "idle";
@@ -68,8 +84,16 @@ public class Villager : MonoBehaviour
         switch (state)
         {
             case State.idling:
+                if(Vector3.Distance(transform.position,enemy.transform.position) <= fleeRange){
+                    state = State.fleeing;
+                }
                 break;
             case State.patroling:
+                break;
+            case State.fleeing:
+                if(Vector3.Distance(transform.position,enemy.transform.position) > fleeRange*2){
+                    state = State.idling;
+                }
                 break;
             case State.leading:
                 if(agent.avoidancePriority!= 2)
@@ -78,7 +102,28 @@ public class Villager : MonoBehaviour
                 }
                 break;
             case State.following:
-                if (agent.avoidancePriority != 50)
+                if(Vector3.Distance(transform.position,enemy.transform.position) <= attackRange){
+                    state = State.attacking;
+                }
+                Follow();
+                break;
+            case State.attacking:
+                if(Vector3.Distance(transform.position,enemy.transform.position) > attackRange){
+                    state = State.following;
+                }
+                Follow();
+                break;
+            case State.dead:
+                break;
+        }
+
+    }
+
+    /// <summary>
+    /// Follows the leader. 
+    /// </summary>
+    private void Follow(){
+        if (agent.avoidancePriority != 50)
                 {
                     agent.avoidancePriority = 50;
                 }
@@ -97,16 +142,7 @@ public class Villager : MonoBehaviour
                     }
                     gameObject.transform.rotation = avg;
                 }
-
-                break;
-            case State.attacking:
-                break;
-            case State.dead:
-                break;
-        }
-
     }
-
 
     /// <summary>
     /// Sets the group that the villager belongs to. 
@@ -144,6 +180,16 @@ public class Villager : MonoBehaviour
         //{
         neighbours.Remove(toRemove);
         // }
+    }
+
+    //for debugging
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, fleeRange);
+
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
     }
 
 
