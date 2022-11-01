@@ -33,6 +33,7 @@ public class PlayerInput : MonoBehaviour
     public GameObject unit;
     public GameObject hiddenLeaderOriginal;
     GameObject hiddenClone;
+    public GameObject cameraHolder;
     public LayerMask unitMask;
 
     Vector2 mousePos = new Vector2();
@@ -125,8 +126,11 @@ public class PlayerInput : MonoBehaviour
             }
             else if(gameManager.IsOverview())
             {
+                VectorUpdate();
+                CameraMovementUpdate();
                 if (Input.GetMouseButton(0))
                 {
+
                     if (GetMouseCollision())
                     {
                         GameObject col = GetMouseCollision();
@@ -235,7 +239,14 @@ public class PlayerInput : MonoBehaviour
         }
 
     }
-
+    private void CameraMovementUpdate()
+    {
+        if(cameraHolder!= null)
+        {
+            cameraHolder.transform.position = cameraHolder.transform.position /*+ (targetDirection * agent.speed * Time.deltaTime)*/;
+        }
+        
+    }
     public void SetUnit(GameObject newLeader)
     {
         if (unit != newLeader)
@@ -272,8 +283,6 @@ public class PlayerInput : MonoBehaviour
             gameManager.SetToOverview();
         }
     }
-
-
 
 
 }

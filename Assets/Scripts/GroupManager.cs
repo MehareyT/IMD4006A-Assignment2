@@ -10,6 +10,8 @@ public class GroupManager : MonoBehaviour
     
     [SerializeField]
     List<UnitGroup> unitGroups = new List<UnitGroup>();
+
+    bool isModified = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,10 +21,26 @@ public class GroupManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        foreach(UnitGroup item in unitGroups)
+        //while(isMod == false)
+        //{
+
+        UnitGroup[] temp = unitGroups.ToArray();
+        foreach (UnitGroup item in temp)
         {
-            item.Update();
+            if (isModified == false)
+            {
+                item.Update();
+            }
+            else
+            {
+                break;
+            }
+
+
         }
+        //}
+        isModified = false;
+
     }
 
     /// <summary>
@@ -96,11 +114,11 @@ public class GroupManager : MonoBehaviour
         }
         if(groupA.hiddenLeader != hiddenLeader)
         {
-            Destroy(groupA.hiddenLeader);
+            Destroy(groupA.hiddenLeader.gameObject);
         }
         if(groupB.hiddenLeader != hiddenLeader)
         {
-            Destroy(groupB.hiddenLeader);
+            Destroy(groupB.hiddenLeader.gameObject);
         }
         groupA.units.Clear();
         groupB.units.Clear();
@@ -117,7 +135,8 @@ public class GroupManager : MonoBehaviour
             }
             
         }
-
+        isModified = true;
+        unitGroups.Add(newGroup);
         return newGroup;
     }
 
