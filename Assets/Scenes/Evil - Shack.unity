@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: 83cd0e1c9fc36eb46985955ffdd00ede, type: 2}
 --- !u!1001 &471122574
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -133,6 +133,14 @@ PrefabInstance:
     - target: {fileID: 180462, guid: 947707231863afa40a8e244c644bfaf1, type: 3}
       propertyPath: m_Name
       value: SM_Prop_Bench_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 180462, guid: 947707231863afa40a8e244c644bfaf1, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 180462, guid: 947707231863afa40a8e244c644bfaf1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 406448, guid: 947707231863afa40a8e244c644bfaf1, type: 3}
       propertyPath: m_RootOrder
@@ -290,8 +298,8 @@ GameObject:
   m_Name: SM_Prop_Barrel_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &2117462052404739715
 Transform:
@@ -340,8 +348,8 @@ GameObject:
   m_Name: SM_Bld_Fence_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!33 &2117462052504374847
 MeshFilter:
@@ -477,8 +485,8 @@ GameObject:
   m_Name: SM_Prop_Cart_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!33 &2117462053303920510
 MeshFilter:
@@ -562,8 +570,8 @@ GameObject:
   m_Name: SM_Bld_Village_HangingCloth_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!23 &2117462053618155070
 MeshRenderer:
@@ -632,8 +640,8 @@ GameObject:
   m_Name: SM_Bld_Fence_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &2117462053620111540
 Transform:
@@ -732,8 +740,8 @@ GameObject:
   m_Name: SM_Bld_Hut_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!64 &2126826117061425439
 MeshCollider:
