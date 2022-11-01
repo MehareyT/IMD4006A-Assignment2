@@ -25,8 +25,8 @@ public class HiddenLeader : MonoBehaviour
 
     public void Move(Vector3 vector, float speed)
     {
-        transform.Translate((vector * speed * Time.deltaTime));
-        //transform.position = transform.position + (vector * speed *Time.deltaTime);
+        //transform.Translate((vector * speed * Time.deltaTime));
+        transform.position = transform.position + (vector * speed *Time.deltaTime);
     } 
     
 

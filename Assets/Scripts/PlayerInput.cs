@@ -218,6 +218,14 @@ public class PlayerInput : MonoBehaviour
             {
                 hiddenClone.GetComponent<HiddenLeader>().Move(targetDirection, agent.speed);
             }
+            else
+            {
+                NavMeshHit checkHit;
+                if(NavMesh.SamplePosition(hiddenClone.transform.position + (targetDirection * agent.speed * Time.deltaTime), out checkHit, 3f, NavMesh.AllAreas))
+                {
+                    hiddenClone.transform.position = checkHit.position;
+                }
+            }
             Vector3 lookDirection = movementVector;
             if (lookDirection != Vector3.zero)
             {
