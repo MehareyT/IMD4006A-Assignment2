@@ -4,16 +4,19 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    GroupManager groupManager;
     GameManager gameManager;
     public GameObject vcam1; //overview 
     public GameObject vcam2; //in control
     [SerializeField] GameObject hiddenClone;
-    public GameObject cameraHolder;
+    public GameObject overviewCameraHolder;
+    public GameObject inControlCamerHolder;
     private PlayerInput playerInput;
     // Start is called before the first frame update
     void Start()
     {
         gameManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
+        groupManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<GroupManager>();
         playerInput = GetComponent<PlayerInput>();
     }
 
@@ -26,8 +29,7 @@ public class CameraController : MonoBehaviour
             {
                 vcam2.SetActive(false);
             }
-            vcam2.GetComponent<Cinemachine.CinemachineVirtualCamera>().Follow = cameraHolder.transform;
-
+            inControlCamerHolder.transform.position = overviewCameraHolder.transform.position;
         }
 
         if (gameManager.IsInControl())
@@ -40,7 +42,8 @@ public class CameraController : MonoBehaviour
             {
                 Debug.Log("PlayerInput passed a null hiddenClone to camera controller");
             }
-
+            overviewCameraHolder.transform.position = inControlCamerHolder.transform.position;
+            inControlCamerHolder.transform.position = groupManager.GetActiveGroup().hiddenLeader.position;
         }
     }
 

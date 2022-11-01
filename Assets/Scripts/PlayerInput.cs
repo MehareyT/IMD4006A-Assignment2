@@ -33,7 +33,8 @@ public class PlayerInput : MonoBehaviour
     public GameObject unit;
     public GameObject hiddenLeaderOriginal;
     GameObject hiddenClone;
-    public GameObject cameraHolder;
+    public GameObject overviewCameraHolder;
+    public GameObject inControlCameraHolder;
     public LayerMask unitMask;
 
     Vector2 mousePos = new Vector2();
@@ -163,6 +164,7 @@ public class PlayerInput : MonoBehaviour
                                         }
                                     }
                                 }
+                                hiddenClone = groupManager.GetActiveGroup().hiddenLeader.gameObject;
                             }
                             else
                             {
@@ -241,9 +243,9 @@ public class PlayerInput : MonoBehaviour
     }
     private void CameraMovementUpdate()
     {
-        if(cameraHolder!= null)
+        if(overviewCameraHolder != null)
         {
-            cameraHolder.transform.position = cameraHolder.transform.position /*+ (targetDirection * agent.speed * Time.deltaTime)*/;
+            overviewCameraHolder.transform.position = overviewCameraHolder.transform.position + (targetDirection * agent.speed * Time.deltaTime);
         }
         
     }
