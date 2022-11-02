@@ -71,6 +71,10 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (enemyMovement.target == null)
+            state = State.idling;
+
         player = FindClosestPlayer().transform; 
         enemyAnimator.SetBool("Run", enemyMovement.followingTarget);
         if (Vector3.Distance(transform.position, player.transform.position) <= detectRange)

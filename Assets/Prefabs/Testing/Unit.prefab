@@ -426,8 +426,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerInput: {fileID: 0}
-  attackRange: 0
-  fleeRange: 0
+  attackRange: 5
+  fleeRange: 3
   enemy: {fileID: 0}
   follower: {fileID: 7529254597208037362}
   leader: {fileID: 7529254597207982098}

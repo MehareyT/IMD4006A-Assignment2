@@ -11,5 +11,6 @@ public class AttackHitbox : MonoBehaviour
             Destroy(other.gameObject);
         }
 
+
     }
 }

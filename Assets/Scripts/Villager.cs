@@ -57,7 +57,10 @@ public class Villager : MonoBehaviour
     ///<summary> The state that the villager is in. </summary>
     [SerializeField] private State state = State.idling;
 
-
+    private void Awake()
+    {
+        enemy = GameObject.FindGameObjectsWithTag("Enemy")[0].transform;
+    }
 
     // Start is called before the first frame update
     void Start()
