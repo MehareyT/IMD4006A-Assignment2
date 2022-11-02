@@ -251,8 +251,8 @@ MonoBehaviour:
   unit: {fileID: 0}
   hiddenLeaderOriginal: {fileID: 1428679080375080768, guid: defdddb05f369dc4597e86aa716894ba,
     type: 3}
-  overviewCameraHolder: {fileID: 0}
-  inControlCameraHolder: {fileID: 0}
+  overviewCameraHolder: {fileID: 1280499081}
+  inControlCameraHolder: {fileID: 2009895781}
   unitMask:
     serializedVersion: 2
     m_Bits: 64

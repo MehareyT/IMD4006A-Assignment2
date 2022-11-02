@@ -251,7 +251,7 @@ public class PlayerInput : MonoBehaviour
     {
         if(overviewCameraHolder != null)
         {
-            overviewCameraHolder.transform.position = overviewCameraHolder.transform.position + (targetDirection * agent.speed * Time.deltaTime);
+            overviewCameraHolder.transform.Translate(targetDirection * 3.5f * Time.deltaTime);
         }
         
     }
