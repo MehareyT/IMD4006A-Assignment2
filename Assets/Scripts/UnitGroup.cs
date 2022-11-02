@@ -75,10 +75,24 @@ public class UnitGroup
     //NEEDS TO BE CALLED EVEY FRAME (UPDATE) BY GROUPMANAGER
     public void Update()
     {
+        units.RemoveAll(item => item == null);
         if (unitLeader!=null)
         {
             UpdateUnitDestinations();
+            //units.RemoveAll(item => item == null);
         }
+        else{
+            foreach(GameObject item in units)
+            {
+                if(item != null){ 
+                    item.GetComponent<Villager>().SetToIdle();
+                }
+                
+            }
+            units.Clear();
+
+        }
+        
         if (units.Count <= 0)
         {
             Debug.Log("Destroying Unit Group");
@@ -92,8 +106,8 @@ public class UnitGroup
     {
         foreach(GameObject item in units)
         {
-
-            item.GetComponent<NavMeshAgent>().destination = hiddenLeader.position;
+            if(item != null){ item.GetComponent<NavMeshAgent>().destination = hiddenLeader.position; }
+            
             
             
         }

@@ -121,9 +121,15 @@ public class PlayerInput : MonoBehaviour
         {
             if (gameManager.IsInControl())
             {
-                agent.avoidancePriority = 1;
-                VectorUpdate();
-                MovementUpdate();
+                if(agent != null){
+                    agent.avoidancePriority = 1;
+                    VectorUpdate();
+                    MovementUpdate();
+                }
+                else{
+                    gameManager.SetToOverview();
+                }
+                
             }
             else if(gameManager.IsOverview())
             {

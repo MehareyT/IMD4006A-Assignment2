@@ -25,6 +25,15 @@ public class Villager : MonoBehaviour
     /// <summary> The villagers attack script </summary>
     VillagerAttack villagerAttack;
 
+    public GameObject follower;
+
+    public GameObject leader;
+
+    public Animator villagerAnimator;
+
+    public float rallyCooldown = 0.2f;
+    private float tempRallyCooldown;
+
 
     //For Debugging
     public TMPro.TextMeshProUGUI textMesh;
@@ -65,13 +74,28 @@ public class Villager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        neighbours.RemoveAll(item => item == null);
+        if(tempRallyCooldown > 0){
+            tempRallyCooldown -= Time.deltaTime;
+        }
+        var moving = Mathf.Abs(agent.velocity.x) + Mathf.Abs(agent.velocity.z);
+        if(moving <= 0.0001f){
+            villagerAnimator.SetBool("Run", false);
+        }
+        else{
+            villagerAnimator.SetBool("Run", true);
+        }
+
         if (textMesh != null)
         {
             //textMesh.text = agent.destination.ToString();
           
-            if (state == State.leading)
+            if (state == State.leading && textMesh.text != "leader")
             {
                 textMesh.text = "leader";
+                follower.SetActive(false);
+                leader.SetActive(true);
+                transform.localScale = new Vector3(0.7f,0.7f,0.7f);
             }else if (state == State.following)
             {
                 textMesh.text = "follower";
@@ -81,7 +105,7 @@ public class Villager : MonoBehaviour
             }else if (state == State.fleeing)
             {
                 textMesh.text = "fleeing";
-            } else
+            } else if(state == State.idling)
             {
                 textMesh.text = "idle";
             }
@@ -215,6 +239,7 @@ public class Villager : MonoBehaviour
     public void SetToIdle()
     {
         CheckAndRemoveLeadership();
+        unitGroup = null;
         state = State.idling;
     }
 
@@ -274,9 +299,12 @@ public class Villager : MonoBehaviour
 
     public void Rally()
     {
-        Debug.Log("Rally!");
-        if (IsLeading())
+       
+        if (IsLeading() && tempRallyCooldown <= 0)
         {
+            tempRallyCooldown = rallyCooldown;
+            Debug.Log("Rally!");
+            villagerAnimator.SetTrigger("Wave");
             if (neighbours.Count > 0)
             {
                 Debug.Assert(unitGroup != null);
