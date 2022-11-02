@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public GameObject overviewCanvas;
+    public GameObject incontrolCanvas;
+
     public static GameManager Instance;
     public enum GameState
     {
@@ -18,10 +22,21 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        
+        
         if(Instance == null)
         {
             DontDestroyOnLoad(gameObject);
             Instance = this;
+            var parameters = new LoadSceneParameters(LoadSceneMode.Additive);
+
+            SceneManager.LoadScene(1, parameters);
+            SceneManager.LoadScene(2, parameters);
+            SceneManager.LoadScene(3, parameters);
+            SceneManager.LoadScene(4, parameters);
+            SceneManager.LoadScene(5, parameters);
+            SceneManager.LoadScene(6, parameters);
+            SceneManager.LoadScene(7, parameters);
         }
         else if (Instance != this)
         {
@@ -29,15 +44,12 @@ public class GameManager : MonoBehaviour
         }
 
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
     {
+        overviewCanvas.SetActive(IsOverview());
+        incontrolCanvas.SetActive(IsInControl());
         //UnitGroup unitGroup = new UnitGroup(transform);
     }
 

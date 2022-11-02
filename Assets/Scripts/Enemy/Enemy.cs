@@ -43,8 +43,12 @@ public class Enemy : MonoBehaviour
 
     public int health = 100;
 
+    public int population = 50;
+
     public Animator hurtAnimator;
 
+    public Healthbar healthbar;
+    public Healthbar popbar;
 
 
     ///<summary> The range the player needs to be from the enemy to begin onscreen AI. </summary>
@@ -63,7 +67,10 @@ public class Enemy : MonoBehaviour
         player = FindClosestPlayer().transform; 
         enemyMovement = GetComponent<EnemyMovement>();
         enemyMovement.SetTarget(player);
-
+        healthbar.current = health;
+        healthbar.max = health;
+        popbar.current = population;
+        popbar.max = population;
         enemyAttack = GetComponent<EnemyAttack>();
         mapLocations = GameObject.Find("LocationController").GetComponent<MapLocations>();
     }
@@ -71,7 +78,8 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        healthbar.current = health;
+        popbar.current = population;
         if (enemyMovement.target == null)
             state = State.idling;
 
