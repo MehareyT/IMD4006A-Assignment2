@@ -58,6 +58,8 @@ public class Villager : MonoBehaviour
         villagerAttack = GetComponent<VillagerAttack>();
         agent = GetComponent<NavMeshAgent>();
         neighbours.Clear();
+
+        enemy = GameObject.FindGameObjectsWithTag("Enemy")[0].transform; 
     }
 
     // Update is called once per frame
@@ -286,7 +288,7 @@ public class Villager : MonoBehaviour
                         if (item.GetUnitGroup() == unitGroup && unitGroup != null)
                         {
                             //neighbour is already in your group
-                            Debug.Log("neighbour is already in your group");
+                            //Debug.Log("neighbour is already in your group");
                         }
                         else
                         {

@@ -59,7 +59,7 @@ using UnityEngine;
         void OnTriggerEnter(Collider other)
         {
             if(other.gameObject.tag == "Enemy"){
-                //damage
+                other.gameObject.GetComponent<Enemy>().Hurt(1);
                 Destroy(gameObject, 0.1f);
             }
 

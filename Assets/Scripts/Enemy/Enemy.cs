@@ -41,6 +41,10 @@ public class Enemy : MonoBehaviour
     ///<summary> The map locations script. </summary>
     private MapLocations mapLocations;
 
+    public int health = 100;
+
+    public Animator hurtAnimator;
+
 
 
     ///<summary> The range the player needs to be from the enemy to begin onscreen AI. </summary>
@@ -56,6 +60,7 @@ public class Enemy : MonoBehaviour
     private int currentBase;
 
     void Awake(){
+        player = FindClosestPlayer().transform; 
         enemyMovement = GetComponent<EnemyMovement>();
         enemyMovement.SetTarget(player);
 
@@ -66,6 +71,7 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        player = FindClosestPlayer().transform; 
         enemyAnimator.SetBool("Run", enemyMovement.followingTarget);
         if (Vector3.Distance(transform.position, player.transform.position) <= detectRange)
         {
@@ -173,12 +179,24 @@ public class Enemy : MonoBehaviour
         
     }
 
-    /// <summary>
-    /// Sets the state to chasing. 
-    /// </summary>
-    public void SetToChasing(UnitGroup unitGroup)
+    public GameObject FindClosestPlayer()
     {
-        state = State.chasing;
+        GameObject[] gos;
+        gos = GameObject.FindGameObjectsWithTag("Player");
+        GameObject closest = null;
+        float distance = Mathf.Infinity;
+        Vector3 position = transform.position;
+        foreach (GameObject go in gos)
+        {
+            Vector3 diff = go.transform.position - position;
+            float curDistance = diff.sqrMagnitude;
+            if (curDistance < distance)
+            {
+                closest = go;
+                distance = curDistance;
+            }
+        }
+        return closest;
     }
 
     void OnDrawGizmosSelected()
@@ -195,6 +213,20 @@ public class Enemy : MonoBehaviour
 
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, locationTargetRange);
+    }
+
+    /// <summary>
+    /// Makes the enemy take a specific amount of damage
+    /// </summary>
+    /// <param name="damage">The amount of damage the enemy will take. </param>
+    public void Hurt(int damage){
+        health -= damage;
+        hurtAnimator.SetTrigger("Hurt");
+        if(health <= 0){
+            state = State.dead;
+            enemyAnimator.SetTrigger("Die");
+        }
+
     }
 
 

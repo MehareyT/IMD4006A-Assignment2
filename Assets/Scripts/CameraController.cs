@@ -40,7 +40,7 @@ public class CameraController : MonoBehaviour
             }
             else
             {
-                Debug.Log("PlayerInput passed a null hiddenClone to camera controller");
+                //Debug.Log("PlayerInput passed a null hiddenClone to camera controller");
             }
             overviewCameraHolder.transform.position = inControlCamerHolder.transform.position;
             inControlCamerHolder.transform.position = groupManager.GetActiveGroup().hiddenLeader.position;

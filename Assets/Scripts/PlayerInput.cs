@@ -199,7 +199,7 @@ public class PlayerInput : MonoBehaviour
         forward.Normalize();
         right.Normalize();
 
-        Debug.Log($"Forward = {forward} || Right = {right}");
+        //Debug.Log($"Forward = {forward} || Right = {right}");
 
         movementVector = (forward * moveInput.y + right * moveInput.x);
         movementVector.Normalize();
