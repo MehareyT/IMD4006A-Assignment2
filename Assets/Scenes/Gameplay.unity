@@ -5550,6 +5550,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c292cd63b19c784f82199e414ae57b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathEffect: {fileID: 7594338411281088915, guid: c6d99665faa25494b849ee652a48d521,
+    type: 3}
   enemy: {fileID: 1852763422}
 --- !u!65 &769967915
 BoxCollider:
