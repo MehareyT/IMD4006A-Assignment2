@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class GroupManager : MonoBehaviour
 {
     [SerializeField]
-    UnitGroup activeGroup;
+    public UnitGroup activeGroup;
     
     [SerializeField]
     List<UnitGroup> unitGroups = new List<UnitGroup>();

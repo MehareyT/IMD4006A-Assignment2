@@ -15,6 +15,9 @@ public class HiddenLeader : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(unitLeader == null){
+            Destroy(gameObject);
+        }
 
     }
     private void OnDrawGizmos()
