@@ -12,6 +12,10 @@ public class Healthbar : MonoBehaviour
     void Update()
     {
         x = current / max;
+        //prevent reverse barr
+        if(x <= 0){
+            x = 0;
+        }
 
         if(useXAxis){
             transform.localScale = new Vector3(x,1f,1f);

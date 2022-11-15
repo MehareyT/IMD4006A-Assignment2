@@ -11754,7 +11754,7 @@ MonoBehaviour:
   movementRange: 50
   attackRange: 3
   enemyAnimator: {fileID: 1041675215}
-  health: 100
+  health: 500
   population: 50
   hurtAnimator: {fileID: 2087481444}
   healthbar: {fileID: 954065202}
