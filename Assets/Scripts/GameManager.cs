@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene(4, parameters);
             SceneManager.LoadScene(5, parameters);
             SceneManager.LoadScene(6, parameters);
-            SceneManager.LoadScene(7, parameters);
+            //SceneManager.LoadScene(7, parameters);
         }
         else if (Instance != this)
         {

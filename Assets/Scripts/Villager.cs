@@ -82,11 +82,17 @@ public class Villager : MonoBehaviour
             tempRallyCooldown -= Time.deltaTime;
         }
         var moving = Mathf.Abs(agent.velocity.x) + Mathf.Abs(agent.velocity.z);
-        if(moving <= 0.0001f){
+        if(moving <= 0.001f){
             villagerAnimator.SetBool("Run", false);
+            villagerAnimator.SetBool("Walk", false);
         }
+        //else if(moving <= 1f){
+        //   villagerAnimator.SetBool("Run", false);
+        //    villagerAnimator.SetBool("Walk", true);
+        //}
         else{
             villagerAnimator.SetBool("Run", true);
+            villagerAnimator.SetBool("Walk", false);
         }
 
         if (textMesh != null)
@@ -98,7 +104,7 @@ public class Villager : MonoBehaviour
                 textMesh.text = "leader";
                 follower.SetActive(false);
                 leader.SetActive(true);
-                transform.localScale = new Vector3(0.7f,0.7f,0.7f);
+                transform.localScale = new Vector3(0.8f,0.8f,0.8f);
             }else if (state == State.following)
             {
                 textMesh.text = "follower";
