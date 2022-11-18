@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
+using UnityEngine.Animations;
 
 
 public class Villager : MonoBehaviour
@@ -36,6 +37,10 @@ public class Villager : MonoBehaviour
     public float rallyCooldown = 0.2f;
     private float tempRallyCooldown;
 
+    public RotationConstraint leaderMapIndicator;
+    public RotationConstraint villagerMapIndicator;
+
+    ConstraintSource conSource;
 
     //For Debugging
     public TMPro.TextMeshProUGUI textMesh;
@@ -61,7 +66,14 @@ public class Villager : MonoBehaviour
 
     private void Awake()
     {
+        
         enemy = GameObject.FindGameObjectsWithTag("Enemy")[0].transform;
+        
+        var mapParent = GameObject.Find("MapCameraParent");
+        conSource.sourceTransform = mapParent.transform;
+        conSource.weight = 1;
+        leaderMapIndicator.AddSource(conSource);
+        villagerMapIndicator.AddSource(conSource);
     }
 
     // Start is called before the first frame update

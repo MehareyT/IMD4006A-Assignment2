@@ -10,6 +10,5 @@ public class PlayerSquish : MonoBehaviour
    void OnCollisionEnter(Collision collision)
     {
         anim.SetTrigger("Squish");
-        Debug.Log("Boing!");
     }
 }

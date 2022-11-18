@@ -279,6 +279,7 @@ public class PlayerInput : MonoBehaviour
         if (Physics.Raycast(ray, out RaycastHit raycastHit, float.MaxValue, unitMask))
         {
             return raycastHit.collider.gameObject;
+            Debug.Log("Hit!");
         }
         else return null;
 
