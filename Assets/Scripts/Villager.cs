@@ -29,6 +29,8 @@ public class Villager : MonoBehaviour
 
     public GameObject leader;
 
+    EmoteSystem emoteSystem;
+
     public Animator villagerAnimator;
 
     public float rallyCooldown = 0.2f;
@@ -69,8 +71,10 @@ public class Villager : MonoBehaviour
         groupManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<GroupManager>();
         villagerAttack = GetComponent<VillagerAttack>();
         agent = GetComponent<NavMeshAgent>();
+        emoteSystem = GetComponent<EmoteSystem>();
         neighbours.Clear();
-
+        follower.SetActive(true);
+        leader.SetActive(false);
         enemy = GameObject.FindGameObjectsWithTag("Enemy")[0].transform; 
     }
 
@@ -105,16 +109,19 @@ public class Villager : MonoBehaviour
                 follower.SetActive(false);
                 leader.SetActive(true);
                 transform.localScale = new Vector3(0.8f,0.8f,0.8f);
-            }else if (state == State.following)
+            }else if (state == State.following && textMesh.text != "follower")
             {
                 textMesh.text = "follower";
-            }else if (state == State.attacking)
+                emoteSystem.Emote("Follow");
+            }else if (state == State.attacking && textMesh.text != "attacking")
             {
                 textMesh.text = "attacking";
-            }else if (state == State.fleeing)
+                emoteSystem.Emote("Angry");
+            }else if (state == State.fleeing && textMesh.text != "fleeing")
             {
+                emoteSystem.Emote("Fear");
                 textMesh.text = "fleeing";
-            } else if(state == State.idling)
+            } else if(state == State.idling && textMesh.text != "idle")
             {
                 textMesh.text = "idle";
             }
@@ -311,6 +318,7 @@ public class Villager : MonoBehaviour
        
         if (IsLeading() && tempRallyCooldown <= 0)
         {
+            emoteSystem.Emote("Beg");
             tempRallyCooldown = rallyCooldown;
             Debug.Log("Rally!");
             villagerAnimator.SetTrigger("Wave");
