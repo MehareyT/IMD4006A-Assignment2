@@ -110,6 +110,7 @@ public class PlayerInput : MonoBehaviour
 
 
     }
+    GameObject villagerCollider;
 
     private void Update()
     {
@@ -133,6 +134,20 @@ public class PlayerInput : MonoBehaviour
             }
             else if(gameManager.IsOverview())
             {
+                if (GetMouseCollision())
+                {
+                    GameObject col = GetMouseCollision();
+
+                    if (col.GetComponent<Villager>() && villagerCollider != col)
+                    {
+                        col.GetComponent<Villager>().highlighted.SetActive(true);
+                        villagerCollider = col;
+                    }
+                }
+                else if(villagerCollider != null){
+                    villagerCollider.GetComponent<Villager>().highlighted.SetActive(false);
+                    villagerCollider = null;
+                }
                 VectorUpdate();
                 CameraMovementUpdate();
                 if (Input.GetMouseButton(0))
@@ -279,7 +294,6 @@ public class PlayerInput : MonoBehaviour
         if (Physics.Raycast(ray, out RaycastHit raycastHit, float.MaxValue, unitMask))
         {
             return raycastHit.collider.gameObject;
-            Debug.Log("Hit!");
         }
         else return null;
 

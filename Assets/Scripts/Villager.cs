@@ -28,6 +28,8 @@ public class Villager : MonoBehaviour
 
     public GameObject follower;
 
+    public GameObject highlighted;
+
     public GameObject leader;
 
     EmoteSystem emoteSystem;

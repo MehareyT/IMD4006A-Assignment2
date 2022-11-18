@@ -7,7 +7,7 @@ public class Emote : ScriptableObject
 {
 
     ///<summary> The name of this emote. </summary>
-    public string name;
+    public new string name;
 
     ///<summary> The emoticon image. </summary>
     public Sprite emotion;
