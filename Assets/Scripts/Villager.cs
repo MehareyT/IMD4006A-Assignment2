@@ -100,7 +100,10 @@ public class Villager : MonoBehaviour
             tempRallyCooldown -= Time.deltaTime;
         }
         var moving = Mathf.Abs(agent.velocity.x) + Mathf.Abs(agent.velocity.z);
-        if(moving <= 0.001f){
+        
+        moving = new Vector2(agent.velocity.x, agent.velocity.z).magnitude;
+        
+        if(moving <= 0.15f){
             villagerAnimator.SetBool("Run", false);
             villagerAnimator.SetBool("Walk", false);
         }
@@ -192,7 +195,7 @@ public class Villager : MonoBehaviour
                 Quaternion avg = Quaternion.identity;
                 if (neighbours.Count == 1)
                 {
-                    avg = Quaternion.Slerp(gameObject.transform.rotation, neighbours[0].transform.rotation, 0.5f);
+                        avg = Quaternion.Slerp(gameObject.transform.rotation, neighbours[0].transform.rotation, 0.5f);
                 }
                 else if (neighbours.Count >= 1)
                 {
@@ -201,7 +204,7 @@ public class Villager : MonoBehaviour
                         if(item!= null)
                             avg = MyMath.AverageQuaternion(ref cumulative, item.transform.rotation, gameObject.transform.rotation, neighbours.Count);
                     }
-                    gameObject.transform.rotation = avg;
+                        gameObject.transform.rotation = avg;
                 }
     }
 
