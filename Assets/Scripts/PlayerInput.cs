@@ -14,6 +14,8 @@ public class PlayerInput : MonoBehaviour
     private InputAction denyAction;
     private InputAction contextAction;
 
+    [SerializeField]
+    private float cameraSpeed = 10f;
 
     [SerializeField]
     private GameObject cam;
@@ -266,7 +268,7 @@ public class PlayerInput : MonoBehaviour
     {
         if(overviewCameraHolder != null)
         {
-            overviewCameraHolder.transform.Translate(targetDirection * 6.5f * Time.deltaTime);
+            overviewCameraHolder.transform.Translate(targetDirection * cameraSpeed * Time.deltaTime);
         }
         
     }

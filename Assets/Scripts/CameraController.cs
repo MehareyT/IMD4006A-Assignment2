@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class CameraController : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class CameraController : MonoBehaviour
     public GameObject overviewCameraHolder;
     public GameObject inControlCamerHolder;
     private PlayerInput playerInput;
+    public GameObject groupTarget;
+    public float targetRadius = 0.5f;
     // Start is called before the first frame update
     void Start()
     {
@@ -43,7 +46,29 @@ public class CameraController : MonoBehaviour
                 //Debug.Log("PlayerInput passed a null hiddenClone to camera controller");
             }
             overviewCameraHolder.transform.position = inControlCamerHolder.transform.position;
-            inControlCamerHolder.transform.position = groupManager.GetActiveGroup().hiddenLeader.position;
+
+            List<CinemachineTargetGroup.Target> targList = new List<CinemachineTargetGroup.Target>();
+            CinemachineTargetGroup.Target temp;
+            temp.target = groupManager.activeGroup.hiddenLeader;
+            temp.radius = targetRadius;
+            temp.weight = 3;
+            targList.Add(temp);
+            foreach (GameObject item in groupManager.activeGroup.units)
+            {
+                CinemachineTargetGroup.Target t;
+                t.radius = targetRadius;
+                t.target = item.transform;
+                t.weight = 1; 
+
+                targList.Add(t);
+            }
+          
+
+            CinemachineTargetGroup.Target[] targets = targList.ToArray();  
+
+            groupTarget.GetComponent<CinemachineTargetGroup>().m_Targets = targets;
+
+            //inControlCamerHolder.transform.position = groupManager.GetActiveGroup().hiddenLeader.position;
         }
     }
 
