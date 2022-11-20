@@ -45,7 +45,7 @@ public class CameraController : MonoBehaviour
             {
                 //Debug.Log("PlayerInput passed a null hiddenClone to camera controller");
             }
-            overviewCameraHolder.transform.position = inControlCamerHolder.transform.position;
+            overviewCameraHolder.transform.position = groupTarget.transform.position;
 
             List<CinemachineTargetGroup.Target> targList = new List<CinemachineTargetGroup.Target>();
             CinemachineTargetGroup.Target temp;

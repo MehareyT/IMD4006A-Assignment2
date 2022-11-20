@@ -13,6 +13,7 @@ public class PlayerInput : MonoBehaviour
     private InputAction mousePositionAction;
     private InputAction denyAction;
     private InputAction contextAction;
+    private InputAction mapAction;
 
     [SerializeField]
     private float cameraSpeed = 10f;
@@ -75,9 +76,19 @@ public class PlayerInput : MonoBehaviour
         contextAction.performed += HandleContextAction;
         contextAction.canceled += HandleContextAction;
 
+        mapAction = leaderActionMap.FindAction("Map");
+        mapAction.started += HandleMapAction;
+        mapAction.performed += HandleMapAction;
+        mapAction.canceled += HandleMapAction;
 
         leaderActionMap.Enable();
         inputActions.Enable();
+
+    }
+
+    private void HandleMapAction(InputAction.CallbackContext obj)
+    {
+        
     }
 
     private void HandleContextAction(InputAction.CallbackContext obj)
