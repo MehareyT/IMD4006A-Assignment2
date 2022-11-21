@@ -46,7 +46,9 @@ public class Villager : MonoBehaviour
 
     //For Debugging
     public TMPro.TextMeshProUGUI textMesh;
-    
+
+    [SerializeField]
+    float moving = 0;
 
     public List<Villager> neighbours = new List<Villager>();
     /// <summary>
@@ -99,22 +101,23 @@ public class Villager : MonoBehaviour
         if(tempRallyCooldown > 0){
             tempRallyCooldown -= Time.deltaTime;
         }
-        var moving = Mathf.Abs(agent.velocity.x) + Mathf.Abs(agent.velocity.z);
-        
-        moving = new Vector2(agent.velocity.x, agent.velocity.z).magnitude;
-        
-        if(moving <= 0.15f){
+        //moving = Mathf.Abs(agent.velocity.x) + Mathf.Abs(agent.velocity.z);
+
+        moving = agent.velocity.magnitude;
+        villagerAnimator.SetFloat("SpeedVal", moving);
+
+       /* if(moving <= 0.15f){
             villagerAnimator.SetBool("Run", false);
             villagerAnimator.SetBool("Walk", false);
         }
-        //else if(moving <= 1f){
-        //   villagerAnimator.SetBool("Run", false);
-        //    villagerAnimator.SetBool("Walk", true);
-        //}
+        else if(moving <= 1f){
+           villagerAnimator.SetBool("Run", false);
+           villagerAnimator.SetBool("Walk", true);
+        }
         else{
             villagerAnimator.SetBool("Run", true);
             villagerAnimator.SetBool("Walk", false);
-        }
+        }*/
 
         if (textMesh != null)
         {
@@ -159,9 +162,9 @@ public class Villager : MonoBehaviour
                 }
                 break;
             case State.leading:
-                if(agent.avoidancePriority!= 2)
+                if(agent.avoidancePriority!= 5)
                 {
-                    agent.avoidancePriority = 2;
+                    agent.avoidancePriority = 5;
                 }
                 break;
             case State.following:
@@ -187,25 +190,25 @@ public class Villager : MonoBehaviour
     /// Follows the leader. 
     /// </summary>
     private void Follow(){
-        if (agent.avoidancePriority != 50)
+        if (agent.avoidancePriority != 99)
                 {
-                    agent.avoidancePriority = 50;
+                    agent.avoidancePriority = 99;
                 }
-                Vector4 cumulative = new Vector4();
-                Quaternion avg = Quaternion.identity;
-                if (neighbours.Count == 1)
-                {
-                        avg = Quaternion.Slerp(gameObject.transform.rotation, neighbours[0].transform.rotation, 0.5f);
-                }
-                else if (neighbours.Count >= 1)
-                {
-                    foreach (Villager item in neighbours)
-                    {
-                        if(item!= null)
-                            avg = MyMath.AverageQuaternion(ref cumulative, item.transform.rotation, gameObject.transform.rotation, neighbours.Count);
-                    }
-                        gameObject.transform.rotation = avg;
-                }
+        Vector4 cumulative = new Vector4();
+        Quaternion avg = Quaternion.identity;
+        if (neighbours.Count == 1)
+        {
+                avg = Quaternion.Slerp(gameObject.transform.rotation, neighbours[0].transform.rotation, 0.5f);
+        }
+        else if (neighbours.Count >= 1)
+        {
+            foreach (Villager item in neighbours)
+            {
+                if(item!= null)
+                    avg = MyMath.AverageQuaternion(ref cumulative, item.transform.rotation, gameObject.transform.rotation, neighbours.Count);
+            }
+                gameObject.transform.rotation = avg;
+        }
     }
 
     /// <summary>
@@ -328,6 +331,36 @@ public class Villager : MonoBehaviour
     public bool IsPatroling()
     {
         return state == State.patroling ? true : false;
+    }
+    /// <summary>
+    /// Checks if neighbours within stopping distance are stopped.
+    /// </summary>
+    /// <returns></returns>
+    public bool CheckForStopped()
+    {
+        //return value r
+        bool r = false;
+        Debug.Log("CheckforStopped started");
+        foreach(Villager item in neighbours)
+        {
+            float dist;
+
+            Vector3 dir = gameObject.transform.position - item.gameObject.transform.position;
+
+            dist = dir.magnitude;
+
+            if(dist <= agent.stoppingDistance)
+            {
+                if (item.agent.isStopped)
+                {
+                    r = true;
+                }
+            }
+
+        }
+
+
+        return r;
     }
 
     public void Rally()

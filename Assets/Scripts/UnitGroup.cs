@@ -19,7 +19,10 @@ public class UnitGroup
     
     /// <summary> List of units in the group </summary>
     public List<GameObject> units = new List<GameObject>();
-    
+
+    public float reactionDistance = 2f;
+
+
     /// <summary>
     /// Create a new unit group class with a hiddenLeader. 
     /// </summary>
@@ -104,15 +107,51 @@ public class UnitGroup
 
     void UpdateUnitDestinations()
     {
-        foreach(GameObject item in units)
+        foreach (GameObject item in units)
         {
-            if(item != null){ item.GetComponent<NavMeshAgent>().destination = hiddenLeader.position; }
-            
-            
-            
-        }
-    }
+            /* 
+             Goal for this:
+                If item is not the leader and is within NavMeshAgent's stopping distance of a neighbour who is stopped
+                then -> stop and make this the destination. 
+              
+             if the item is the leader then -> destination = hidden leader position
 
+            if the item is not the leader then -> if the leader is moving && the destination 
+            is further than a given distance then -> the destination = hiden leader position
+             */
+            if (item != null)
+            {
+
+                if (item == unitLeader)
+                {
+
+                    item.GetComponent<NavMeshAgent>().destination = hiddenLeader.position;
+                }
+
+                if (item != unitLeader && item.GetComponent<Villager>().CheckForStopped() == true && unitLeader.GetComponent<NavMeshAgent>().isStopped == true)
+                {
+                    //item.GetComponent<NavMeshAgent>().ResetPath();
+                    Debug.Log("Should stop because unit is stopped nearby");
+                    item.GetComponent<NavMeshAgent>().destination = item.transform.position;
+                }
+                else if (item != unitLeader && unitLeader.GetComponent<NavMeshAgent>().isStopped == false)
+                {
+                    float dist;
+
+                    Vector3 dir = hiddenLeader.position - item.transform.position;
+
+                    dist = dir.magnitude;
+                    if (dist > reactionDistance)
+                    {
+                        item.GetComponent<NavMeshAgent>().destination = hiddenLeader.position;
+                    }
+                    
+                }
+
+            }
+        }
+
+    }
     public void ChangeUnitLeader(GameObject newLeader)
     {
         unitLeader = newLeader;
