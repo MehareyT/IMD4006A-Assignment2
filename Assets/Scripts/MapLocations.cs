@@ -42,6 +42,10 @@ public class MapLocations : MonoBehaviour
 
     public GameObject spawnVillager;
 
+    public int totalPop;
+
+    /// <summary> Total Max Popluation of villager at any given time </summary>
+    [SerializeField] private float maxTotalPop;
 
     private void Awake()
     {
@@ -62,7 +66,9 @@ public class MapLocations : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        totalPop = GameObject.FindGameObjectsWithTag("Player").Length;
+        Debug.Log("Current total population: " + totalPop);
+
     }
 
     private IEnumerator SpawnVillagers(VillagerBase spawnFrom)
@@ -74,7 +80,7 @@ public class MapLocations : MonoBehaviour
         while (enabled)
         {
             yield return wait;
-            if (spawnFrom.currentPop < spawnFrom.maxPop)
+            if (totalPop < maxTotalPop)
             {
 
                 //Debug.Log("Spawn Villager");
@@ -90,7 +96,7 @@ public class MapLocations : MonoBehaviour
                 //Debug.Log("No Villager Spawned");
             }
 
-            Debug.Log("Current total population: " + GameObject.FindGameObjectsWithTag("Player").Length);
+            //Debug.Log("Current total population: " + GameObject.FindGameObjectsWithTag("Player").Length);
 
             foreach (GameObject vilCheck in baseVillagers)
             {
