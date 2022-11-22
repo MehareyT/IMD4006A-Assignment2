@@ -129,7 +129,7 @@ public class Villager : MonoBehaviour
              villagerAnimator.SetBool("Walk", false);
          }*/
 
-        /*if (textMesh != null)
+        if (textMesh != null)
         {
             //textMesh.text = agent.destination.ToString();
           
@@ -155,7 +155,7 @@ public class Villager : MonoBehaviour
             {
                 textMesh.text = "idle";
             }
-        }*/
+        }
         if (arrived)
         {
             textMesh.text = "Arrived";
