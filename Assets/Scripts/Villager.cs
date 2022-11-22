@@ -42,6 +42,8 @@ public class Villager : MonoBehaviour
     public float rallyCooldown = 0.2f;
     private float tempRallyCooldown;
 
+
+
     public RotationConstraint leaderMapIndicator;
     public RotationConstraint villagerMapIndicator;
 
@@ -191,6 +193,7 @@ public class Villager : MonoBehaviour
                 {
                     agent.avoidancePriority = 5;
                 }
+
                 break;
             case State.following:
                 if(Vector3.Distance(transform.position,enemy.transform.position) <= attackRange){
