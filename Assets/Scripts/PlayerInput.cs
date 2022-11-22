@@ -256,7 +256,7 @@ public class PlayerInput : MonoBehaviour
             //Check to make sure that you are moving somewhere on the navmesh (hit.mask != 0 is checking for the edge of the mask)
             if (hit.mask != 0)
             {
-                hiddenClone.GetComponent<HiddenLeader>().Move(targetDirection, agent.speed);
+                hiddenClone.GetComponent<HiddenLeader>().Move(targetDirection, agent.speed/2 + agent.speed/4);
             }
             else
             {

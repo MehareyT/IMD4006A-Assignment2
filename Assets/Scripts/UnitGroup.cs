@@ -124,11 +124,8 @@ public class UnitGroup
 
                 if (item == unitLeader)
                 {
-                    var dist = (hiddenLeader.position - item.transform.position).magnitude;
-                    if (dist > 0.1f)
-                    {
-                        item.GetComponent<NavMeshAgent>().destination = hiddenLeader.position;
-                    }
+
+                    item.GetComponent<NavMeshAgent>().destination = hiddenLeader.position;
                     
                 }
 
