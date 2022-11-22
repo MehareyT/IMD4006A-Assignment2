@@ -67,7 +67,7 @@ public class MapLocations : MonoBehaviour
     void Update()
     {
         totalPop = GameObject.FindGameObjectsWithTag("Player").Length;
-        Debug.Log("Current total population: " + totalPop);
+        //Debug.Log("Current total population: " + totalPop);
 
     }
 

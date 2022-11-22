@@ -21,7 +21,7 @@ public class UnitGroup
     public List<GameObject> units = new List<GameObject>();
 
     public float reactionDistance = 2f;
-
+    
 
     /// <summary>
     /// Create a new unit group class with a hiddenLeader. 
@@ -124,23 +124,23 @@ public class UnitGroup
 
                 if (item == unitLeader)
                 {
-
-                    item.GetComponent<NavMeshAgent>().destination = hiddenLeader.position;
+                    var dist = (hiddenLeader.position - item.transform.position).magnitude;
+                    if (dist > 0.1f)
+                    {
+                        item.GetComponent<NavMeshAgent>().destination = hiddenLeader.position;
+                    }
+                    
                 }
 
-                if (item != unitLeader && item.GetComponent<Villager>().CheckForStopped() == true && unitLeader.GetComponent<NavMeshAgent>().isStopped == true)
+                if (item != unitLeader && item.GetComponent<Villager>().CheckForStopped() == true && unitLeader.GetComponent<Villager>().arrived == true)
                 {
                     //item.GetComponent<NavMeshAgent>().ResetPath();
                     Debug.Log("Should stop because unit is stopped nearby");
                     item.GetComponent<NavMeshAgent>().destination = item.transform.position;
                 }
-                else if (item != unitLeader && unitLeader.GetComponent<NavMeshAgent>().isStopped == false)
+                else if (item != unitLeader && unitLeader.GetComponent<Villager>().arrived == false)
                 {
-                    float dist;
-
-                    Vector3 dir = hiddenLeader.position - item.transform.position;
-
-                    dist = dir.magnitude;
+                    var dist = (hiddenLeader.position - item.transform.position).magnitude;
                     if (dist > reactionDistance)
                     {
                         item.GetComponent<NavMeshAgent>().destination = hiddenLeader.position;

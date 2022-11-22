@@ -13,9 +13,12 @@ public class Villager : MonoBehaviour
     public PlayerInput playerInput;
     GroupManager groupManager;
     NavMeshAgent agent;
-
+    public bool arrived = false;
     /// <summary> The radius the unit will see the enemy and start attacking it </summary>
     public float attackRange;
+
+    public float stopDis = 1.2f;
+
 
     /// <summary> The radius an idle unit will see the enemy and start running from it </summary>
     public float fleeRange;
@@ -46,6 +49,7 @@ public class Villager : MonoBehaviour
 
     //For Debugging
     public TMPro.TextMeshProUGUI textMesh;
+
 
     [SerializeField]
     float moving = 0;
@@ -97,29 +101,35 @@ public class Villager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        neighbours.RemoveAll(item => item == null);
-        if(tempRallyCooldown > 0){
-            tempRallyCooldown -= Time.deltaTime;
-        }
+
+
         //moving = Mathf.Abs(agent.velocity.x) + Mathf.Abs(agent.velocity.z);
 
         moving = agent.velocity.magnitude;
         villagerAnimator.SetFloat("SpeedVal", moving);
-
-       /* if(moving <= 0.15f){
+        float distanceLeft = agent.remainingDistance;
+        if(distanceLeft!=Mathf.Infinity && agent.pathStatus == NavMeshPathStatus.PathComplete && agent.remainingDistance == 0)
+        {
+            arrived = true;
+        }
+        else
+        {
+            arrived = false;
+        }
+        /* if(moving <= 0.15f){
+             villagerAnimator.SetBool("Run", false);
+             villagerAnimator.SetBool("Walk", false);
+         }
+         else if(moving <= 1f){
             villagerAnimator.SetBool("Run", false);
-            villagerAnimator.SetBool("Walk", false);
-        }
-        else if(moving <= 1f){
-           villagerAnimator.SetBool("Run", false);
-           villagerAnimator.SetBool("Walk", true);
-        }
-        else{
-            villagerAnimator.SetBool("Run", true);
-            villagerAnimator.SetBool("Walk", false);
-        }*/
+            villagerAnimator.SetBool("Walk", true);
+         }
+         else{
+             villagerAnimator.SetBool("Run", true);
+             villagerAnimator.SetBool("Walk", false);
+         }*/
 
-        if (textMesh != null)
+        /*if (textMesh != null)
         {
             //textMesh.text = agent.destination.ToString();
           
@@ -145,8 +155,23 @@ public class Villager : MonoBehaviour
             {
                 textMesh.text = "idle";
             }
+        }*/
+        if (arrived)
+        {
+            textMesh.text = "Arrived";
+        }
+        else if (!arrived)
+        {
+            textMesh.text = "Moving";
         }
 
+
+        neighbours.RemoveAll(item => item == null);
+
+
+        if(tempRallyCooldown > 0){
+            tempRallyCooldown -= Time.deltaTime;
+        }
         switch (state)
         {
             case State.idling:
@@ -340,23 +365,31 @@ public class Villager : MonoBehaviour
     {
         //return value r
         bool r = false;
-        Debug.Log("CheckforStopped started");
+        
         foreach(Villager item in neighbours)
         {
             float dist;
 
             Vector3 dir = gameObject.transform.position - item.gameObject.transform.position;
-
+            
             dist = dir.magnitude;
-
-            if(dist <= agent.stoppingDistance)
+            //Debug.Log($"distance to neighbour = {dist}"); 
+            if(dist <= stopDis)
             {
-                if (item.agent.isStopped)
+                if (item.arrived)
                 {
                     r = true;
                 }
             }
 
+        }
+        if (r)
+        {
+            Debug.Log("CheckForStopped = true");
+        }
+        else
+        {
+            Debug.Log("CheckForStopped = false");
         }
 
 
