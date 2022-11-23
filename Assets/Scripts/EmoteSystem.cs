@@ -48,8 +48,9 @@ public class EmoteSystem : MonoBehaviour
             background.sprite = emt.background;
             emoteAnimator.SetTrigger("Emote");
         }
+        //if the emote did not succeed its random chance to run give it a small cooldown anyway
         else if(cooldowns[index] <= 0.0f){
-            cooldowns[index] = 1;
+            cooldowns[index] = emt.cooldown/5;
         }
         
     }

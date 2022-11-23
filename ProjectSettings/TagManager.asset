@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - EnemyBase
   - VillagerBase
+  - Dead
   layers:
   - Default
   - TransparentFX

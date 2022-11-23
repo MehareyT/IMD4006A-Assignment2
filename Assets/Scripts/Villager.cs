@@ -171,13 +171,16 @@ public class Villager : MonoBehaviour
 
         neighbours.RemoveAll(item => item == null);
 
-
+        Transform closestDead = FindClosestDeadBody().transform;
         if(tempRallyCooldown > 0){
             tempRallyCooldown -= Time.deltaTime;
         }
         switch (state)
         {
             case State.idling:
+                if(Vector3.Distance(transform.position,closestDead.position) <= fleeRange){
+                    emoteSystem.Emote("Sad");
+                }
                 if(Vector3.Distance(transform.position,enemy.transform.position) <= fleeRange){
                     state = State.fleeing;
                 }
@@ -190,6 +193,9 @@ public class Villager : MonoBehaviour
                 }
                 break;
             case State.leading:
+                if(Vector3.Distance(transform.position,closestDead.position) <= fleeRange){
+                    emoteSystem.Emote("Sad");
+                }
                 if(agent.avoidancePriority!= 5)
                 {
                     agent.avoidancePriority = 5;
@@ -197,6 +203,9 @@ public class Villager : MonoBehaviour
 
                 break;
             case State.following:
+                if(Vector3.Distance(transform.position,closestDead.position) <= fleeRange){
+                    emoteSystem.Emote("Sad");
+                }
                 if(Vector3.Distance(transform.position,enemy.transform.position) <= attackRange){
                     state = State.attacking;
                 }
@@ -213,6 +222,26 @@ public class Villager : MonoBehaviour
                 break;
         }
 
+    }
+
+    public GameObject FindClosestDeadBody()
+    {
+        GameObject[] gos;
+        gos = GameObject.FindGameObjectsWithTag("Dead");
+        GameObject closest = null;
+        float distance = Mathf.Infinity;
+        Vector3 position = transform.position;
+        foreach (GameObject go in gos)
+        {
+            Vector3 diff = go.transform.position - position;
+            float curDistance = diff.sqrMagnitude;
+            if (curDistance < distance)
+            {
+                closest = go;
+                distance = curDistance;
+            }
+        }
+        return closest;
     }
 
     /// <summary>

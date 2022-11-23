@@ -15,5 +15,5 @@ MonoBehaviour:
   name: Curious
   emotion: {fileID: 21300000, guid: 89e6acf62dc383e4a9026c6605851a19, type: 3}
   background: {fileID: 21300000, guid: 7638975051b424d4f9161e64e6b24d15, type: 3}
-  chance: 20
+  chance: 35
   cooldown: 20
