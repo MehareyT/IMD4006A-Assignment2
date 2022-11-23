@@ -44,8 +44,12 @@ public class EmoteSystem : MonoBehaviour
         }
         else if( Random.Range(0,100) <= emt.chance && cooldowns[index] <= 0.0f){
             emote.sprite = emt.emotion;
+            cooldowns[index] = emt.cooldown;
             background.sprite = emt.background;
             emoteAnimator.SetTrigger("Emote");
+        }
+        else if(cooldowns[index] <= 0.0f){
+            cooldowns[index] = 1;
         }
         
     }

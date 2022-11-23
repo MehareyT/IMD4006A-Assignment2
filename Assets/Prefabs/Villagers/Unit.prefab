@@ -907,15 +907,13 @@ MonoBehaviour:
   arrived: 0
   attackRange: 5
   stopDis: 0.6
-  fleeRange: 3
+  fleeRange: 8
   enemy: {fileID: 0}
   follower: {fileID: 7529254597208037362}
   highlighted: {fileID: 1360284259016140537}
   leader: {fileID: 7529254597207982098}
   villagerAnimator: {fileID: 8982545168143587106}
   rallyCooldown: 1
-  normalAcceleration: 15
-  leaderAcceleration: 8
   leaderMapIndicator: {fileID: 2243578270582954986}
   villagerMapIndicator: {fileID: 8772835458841289449}
   textMesh: {fileID: 3030005056511419586}

@@ -16,4 +16,4 @@ MonoBehaviour:
   emotion: {fileID: 21300000, guid: 8f6dbe64ffd04ab468b2c745cee00357, type: 3}
   background: {fileID: 21300000, guid: 7f0e58ec4aa065b4ba5162e9c7fa81ca, type: 3}
   chance: 100
-  cooldown: 20
+  cooldown: 1

@@ -138,9 +138,10 @@ public class Villager : MonoBehaviour
             if (state == State.leading && textMesh.text != "leader")
             {
                 textMesh.text = "leader";
-                follower.SetActive(false);
-                leader.SetActive(true);
-                transform.localScale = new Vector3(0.8f,0.8f,0.8f);
+                highlighted.SetActive(false);
+                //follower.SetActive(false);
+                //leader.SetActive(true);
+                //transform.localScale = new Vector3(0.8f,0.8f,0.8f);
             }else if (state == State.following && textMesh.text != "follower")
             {
                 textMesh.text = "follower";

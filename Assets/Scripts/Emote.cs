@@ -21,5 +21,6 @@ public class Emote : ScriptableObject
     ///<summary> The time until this emote can be shown again. </summary>
     public float cooldown;
     
+    
 
 }
