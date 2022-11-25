@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class MapLocations : MonoBehaviour
 {
@@ -32,7 +33,7 @@ public class MapLocations : MonoBehaviour
     public Transform enemy;
 
     /// <summary> List of map locations </summary>
-    public List<Transform> locations = new();
+    public List<GameObject> locations = new();
 
     /// <summary> Array of map locations </summary>
     private VillagerBase[] villagerBases;
@@ -50,15 +51,17 @@ public class MapLocations : MonoBehaviour
     private void Awake()
     {
         enemy = GameObject.FindGameObjectsWithTag("Enemy")[0].transform;
+        
     }
 
     void Start()
     {
-        villagerBases = new VillagerBase[locations.Count];
-
-        for(int i = 0; i < locations.Count; i++)
+        locations = GameObject.FindGameObjectsWithTag("VillagerBase").ToList();
+        villagerBases = new VillagerBase[23];
+        
+        for(int i = 0; i < 23; i++)
         {
-            villagerBases[i] = new VillagerBase(locations[i], i);
+            villagerBases[i] = new VillagerBase(locations[i].transform, i);
             StartCoroutine(SpawnVillagers(villagerBases[i]));
         }
     }
@@ -84,9 +87,9 @@ public class MapLocations : MonoBehaviour
             {
 
                 //Debug.Log("Spawn Villager");
-
+                float radius = locations[spawnFrom.baseID].GetComponent<SpawnLocation>().spawnRadius;
                 //Instantiate in a ring around the baseTransform
-                baseVillagers.Add(GameObject.Instantiate(spawnVillager, locations[spawnFrom.baseID].position + new Vector3(Random.onUnitSphere.x, 1.25f,Random.onUnitSphere.z), Quaternion.Euler(Vector3.zero)));
+                baseVillagers.Add(GameObject.Instantiate(spawnVillager, locations[spawnFrom.baseID].transform.position + new Vector3(Random.onUnitSphere.x * radius, 1.25f,Random.onUnitSphere.z * radius), Quaternion.Euler(Vector3.zero)));
 
                 spawnFrom.currentPop += 1;
                 villagerBases[spawnFrom.baseID].currentPop = spawnFrom.currentPop;
@@ -97,15 +100,6 @@ public class MapLocations : MonoBehaviour
             }
 
             //Debug.Log("Current total population: " + GameObject.FindGameObjectsWithTag("Player").Length);
-
-            foreach (GameObject vilCheck in baseVillagers)
-            {
-                if(Vector3.Distance(locations[spawnFrom.baseID].position, vilCheck.transform.position) > 10.0f)
-                {
-                    //villagerBases[spawnFrom.baseID].maxPop = spawnFrom.maxPop;
-                    //Debug.Log("Villager Left :(");
-                }
-            }
 
 
 

@@ -242,11 +242,11 @@ public class Enemy : MonoBehaviour
     private Transform selectNewLocation()
     {
         List<Transform> nearby = new();
-        foreach(Transform newTarget  in mapLocations.locations)
+        foreach(GameObject newTarget  in mapLocations.locations)
         {
-            if (Vector3.Distance(transform.position, newTarget.position) <= locationTargetRange)
+            if (Vector3.Distance(transform.position, newTarget.transform.position) <= locationTargetRange)
             {
-                nearby.Add(newTarget);
+                nearby.Add(newTarget.transform);
             }
         }
         if (nearby.Count > 0)
@@ -255,7 +255,7 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            return mapLocations.locations[Random.Range(0, mapLocations.locations.Count)];
+            return mapLocations.locations[Random.Range(0, mapLocations.locations.Count)].transform;
         }
     }
 

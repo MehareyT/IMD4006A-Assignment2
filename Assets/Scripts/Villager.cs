@@ -43,7 +43,6 @@ public class Villager : MonoBehaviour
     private float tempRallyCooldown;
 
 
-
     public RotationConstraint leaderMapIndicator;
     public RotationConstraint villagerMapIndicator;
 
@@ -178,6 +177,8 @@ public class Villager : MonoBehaviour
         switch (state)
         {
             case State.idling:
+                agent.speed = 3;
+                agent.acceleration = 5;
                 if(Vector3.Distance(transform.position,closestDead.position) <= fleeRange){
                     emoteSystem.Emote("Sad");
                 }
@@ -188,11 +189,20 @@ public class Villager : MonoBehaviour
             case State.patroling:
                 break;
             case State.fleeing:
+                agent.speed = 2;
+                agent.acceleration = 5;
                 if(Vector3.Distance(transform.position,enemy.transform.position) > fleeRange*2){
                     state = State.idling;
                 }
+
+                Vector3 dirToEnemy = transform.position - enemy.transform.position;
+                Vector3 newPos = transform.position + dirToEnemy;
+                agent.SetDestination(newPos);
+
                 break;
             case State.leading:
+                agent.speed = 8;
+                agent.acceleration = 15;
                 if(Vector3.Distance(transform.position,closestDead.position) <= fleeRange){
                     emoteSystem.Emote("Sad");
                 }
@@ -203,6 +213,7 @@ public class Villager : MonoBehaviour
 
                 break;
             case State.following:
+                agent.speed = 8;
                 if(Vector3.Distance(transform.position,closestDead.position) <= fleeRange){
                     emoteSystem.Emote("Sad");
                 }
