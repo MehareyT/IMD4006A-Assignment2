@@ -274,12 +274,14 @@ public class Villager : MonoBehaviour
         {
             foreach (Villager item in neighbours)
             {
-                if(item!= null)
+                if(item!= null && unitGroup.CheckForContains(item.gameObject) == true)
                     avg = MyMath.AverageQuaternion(ref cumulative, item.transform.rotation, gameObject.transform.rotation, neighbours.Count);
             }
                 gameObject.transform.rotation = avg;
         }
     }
+    
+    
 
     /// <summary>
     /// Sets the group that the villager belongs to. 

@@ -165,4 +165,8 @@ public class UnitGroup
         }
     }
 
+    public bool CheckForContains(GameObject toCheck)
+    {
+        return units.Contains(toCheck);
+    }
 }
