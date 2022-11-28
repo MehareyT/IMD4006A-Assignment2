@@ -20,7 +20,7 @@ public class UnitGroup
     /// <summary> List of units in the group </summary>
     public List<GameObject> units = new List<GameObject>();
 
-    public float reactionDistance = 0.3f;
+    public float reactionDistance = 0.3f; //If reaction distance is too large it will units will move really weird and stutter when they get too close to the leader. 
     
 
     /// <summary>
