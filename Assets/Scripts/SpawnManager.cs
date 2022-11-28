@@ -8,32 +8,24 @@ public class SpawnManager : MonoBehaviour
 
 
 
-    /// <summary> List of map locations </summary>
+    /// <summary> List of spawner nodes </summary>
     public List<GameObject> locations = new();
 
+    /// <summary> The villager prefab to spawn </summary>
     public GameObject spawnVillager;
 
-    public int totalPop;
-
-    /// <summary> Total Max Popluation of villager at any given time </summary>
-    [SerializeField] private float maxTotalPop;
+    /// <summary> The manager of the population numbers </summary>
+    private PopulationManager popManager;
 
 
     void Start()
     {
         locations = GameObject.FindGameObjectsWithTag("VillagerBase").ToList();
-        
+        popManager = GetComponent<PopulationManager>();
         for(int i = 0; i < 23; i++)
         {
             StartCoroutine(SpawnVillagers(locations[i].GetComponent<SpawnLocation>()));
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        totalPop = GameObject.FindGameObjectsWithTag("Player").Length;
-
     }
 
     private IEnumerator SpawnVillagers(SpawnLocation location)
@@ -45,7 +37,7 @@ public class SpawnManager : MonoBehaviour
         while (enabled)
         {
             yield return wait;
-            if (location.totalSpawnNum < location.maxSpawnNum && Random.Range(0, 100) <= location.spawnChance && totalPop < maxTotalPop)
+            if (location.totalSpawnNum < location.maxSpawnNum && Random.Range(0, 100) <= location.spawnChance && popManager.currentPop < popManager.maxPopulation)
             {
 
                 float radius = location.spawnRadius;

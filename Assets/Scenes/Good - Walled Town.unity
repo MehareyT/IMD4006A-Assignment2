@@ -257,6 +257,10 @@ PrefabInstance:
       value: SM_Prop_WaterWheel_01
       objectReference: {fileID: 0}
     - target: {fileID: 134024, guid: 190d4c69c7643e94c8c3a81ad97ce81e, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 134024, guid: 190d4c69c7643e94c8c3a81ad97ce81e, type: 3}
       propertyPath: m_NavMeshLayer
       value: 1
       objectReference: {fileID: 0}
@@ -449,7 +453,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 584988804}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Props
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -666,6 +670,10 @@ PrefabInstance:
       value: SM_Prop_Wood_Stack_02 (1)
       objectReference: {fileID: 0}
     - target: {fileID: 1043389837060866, guid: b1a9cb8ad74be784d8da93454bea2724, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1043389837060866, guid: b1a9cb8ad74be784d8da93454bea2724, type: 3}
       propertyPath: m_NavMeshLayer
       value: 1
       objectReference: {fileID: 0}
@@ -814,6 +822,10 @@ PrefabInstance:
       value: SM_Prop_Wood_Stack_02
       objectReference: {fileID: 0}
     - target: {fileID: 1043389837060866, guid: b1a9cb8ad74be784d8da93454bea2724, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1043389837060866, guid: b1a9cb8ad74be784d8da93454bea2724, type: 3}
       propertyPath: m_NavMeshLayer
       value: 1
       objectReference: {fileID: 0}
@@ -940,7 +952,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1158619862033997486}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: House 3 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1009,7 +1021,7 @@ GameObject:
   - component: {fileID: 1177495910647150906}
   - component: {fileID: 1177495910646095918}
   - component: {fileID: 1203555560564884594}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Bld_Church_Window_01 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1072,7 +1084,7 @@ GameObject:
   - component: {fileID: 1529605789473254508}
   - component: {fileID: 1529605789473940148}
   - component: {fileID: 1575374117076696044}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Bld_Church_Room_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1138,7 +1150,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6307510781197322535}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: House 13 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1168,7 +1180,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5338921249822536034}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: House 14
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1202,7 +1214,7 @@ GameObject:
   - component: {fileID: 1890600831124586064}
   - component: {fileID: 1890600831123463622}
   - component: {fileID: 1934936827818393076}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Bld_House_Door_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1271,7 +1283,7 @@ GameObject:
   - component: {fileID: 1905889723079643733}
   - component: {fileID: 1905889723078654679}
   - component: {fileID: 1915559904275708761}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Bld_Church_Extension_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1490,7 +1502,7 @@ GameObject:
   - component: {fileID: 2124131206853384740}
   - component: {fileID: 2124437468049417398}
   - component: {fileID: 2123560515989515370}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Bld_Roof_Long_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1524,7 +1536,7 @@ GameObject:
   - component: {fileID: 2134383486610610229}
   - component: {fileID: 2134383486611785421}
   - component: {fileID: 2123358277883263253}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Bld_Base_Long_Door_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1663,7 +1675,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2525731408367628108}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Log Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1682,7 +1694,7 @@ GameObject:
   - component: {fileID: 2525731408391630599}
   - component: {fileID: 2525731408390647525}
   - component: {fileID: 2587727953061570997}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Env_Stream_Straight_01 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1816,7 +1828,7 @@ GameObject:
   - component: {fileID: 2525731408405273168}
   - component: {fileID: 2525731408406374160}
   - component: {fileID: 2587654268707524302}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Prop_Wood_Spike_02 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1900,7 +1912,7 @@ GameObject:
   - component: {fileID: 2525731408413529165}
   - component: {fileID: 2525731408414512559}
   - component: {fileID: 2587727953138193151}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Env_Stream_Straight_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1949,7 +1961,7 @@ GameObject:
   - component: {fileID: 2525731408492534874}
   - component: {fileID: 2525731408491111822}
   - component: {fileID: 2587624881691614136}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Prop_Fence_Wood_Large_01 (26)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2068,7 +2080,7 @@ GameObject:
   - component: {fileID: 2525731408493768233}
   - component: {fileID: 2525731408493090813}
   - component: {fileID: 2587624881694648779}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Prop_Fence_Wood_Large_01 (11)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2167,7 +2179,7 @@ GameObject:
   - component: {fileID: 2525731408564727401}
   - component: {fileID: 2525731408565655485}
   - component: {fileID: 2587624881629849995}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Prop_Fence_Wood_Large_01 (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2201,7 +2213,7 @@ GameObject:
   - component: {fileID: 2525731408575368120}
   - component: {fileID: 2525731408576049772}
   - component: {fileID: 2587624881640229978}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Prop_Fence_Wood_Large_01 (20)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2271,7 +2283,7 @@ GameObject:
   - component: {fileID: 2525731408584667174}
   - component: {fileID: 2589169796621146846}
   - component: {fileID: 2587848027249118498}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Bld_Guard_Tower_01 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2355,7 +2367,7 @@ GameObject:
   - component: {fileID: 2525731408634436960}
   - component: {fileID: 2525731408633480358}
   - component: {fileID: 2587535776942622062}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Prop_Fence_Wood_Large_02 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2489,7 +2501,7 @@ GameObject:
   - component: {fileID: 2525731408711355896}
   - component: {fileID: 2525731408712394278}
   - component: {fileID: 2587359441876387400}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Env_Stream_Straight_02 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2523,7 +2535,7 @@ GameObject:
   - component: {fileID: 2525731408718097248}
   - component: {fileID: 2525731408717419188}
   - component: {fileID: 2587624881247890562}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Prop_Fence_Wood_Large_01 (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2607,7 +2619,7 @@ GameObject:
   - component: {fileID: 2525731408726583306}
   - component: {fileID: 2525731408725905886}
   - component: {fileID: 2587624881256378344}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Prop_Fence_Wood_Large_01 (18)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2691,7 +2703,7 @@ GameObject:
   - component: {fileID: 2525731408764731704}
   - component: {fileID: 2525731408764115198}
   - component: {fileID: 2587535776812914998}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Prop_Fence_Wood_Large_02 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2775,7 +2787,7 @@ GameObject:
   - component: {fileID: 2525731408768619401}
   - component: {fileID: 2525731408767740229}
   - component: {fileID: 2588196257405528191}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Bld_House_Window_04 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2874,7 +2886,7 @@ GameObject:
   - component: {fileID: 2525731408819699698}
   - component: {fileID: 2525731408818619058}
   - component: {fileID: 2587654268834048876}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Prop_Wood_Spike_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3058,7 +3070,7 @@ GameObject:
   - component: {fileID: 2525731408851225110}
   - component: {fileID: 2525731408849777710}
   - component: {fileID: 2587637514659801790}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Env_Stream_Corner_01 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3092,7 +3104,7 @@ GameObject:
   - component: {fileID: 2525731408850045994}
   - component: {fileID: 2525731408851076142}
   - component: {fileID: 2589167842347610482}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Prop_Wood_Spike_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3153,7 +3165,7 @@ GameObject:
   - component: {fileID: 2525731408864007751}
   - component: {fileID: 2525731408865113479}
   - component: {fileID: 2587393739518728121}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Prop_Wood_Spike_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3203,7 +3215,7 @@ GameObject:
   - component: {fileID: 2525731408863379744}
   - component: {fileID: 2525731408862358270}
   - component: {fileID: 2587359441994861200}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Env_Stream_Straight_02 (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3294,7 +3306,7 @@ GameObject:
   - component: {fileID: 2525731408886160105}
   - component: {fileID: 2525731408884966205}
   - component: {fileID: 2587624881012776203}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Prop_Fence_Wood_Large_01 (31)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3363,7 +3375,7 @@ GameObject:
   - component: {fileID: 2525731408915866076}
   - component: {fileID: 2525731408914956068}
   - component: {fileID: 2586269291603378428}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Bld_Base_Long_Door_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3447,7 +3459,7 @@ GameObject:
   - component: {fileID: 2525731408932060391}
   - component: {fileID: 2525731408931407155}
   - component: {fileID: 2587624881059232517}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Prop_Fence_Wood_Large_01 (28)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3547,7 +3559,7 @@ GameObject:
   - component: {fileID: 2525731408987137945}
   - component: {fileID: 2589169797292084577}
   - component: {fileID: 2587848027652020893}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Bld_Guard_Tower_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3666,7 +3678,7 @@ GameObject:
   - component: {fileID: 2525731408991925532}
   - component: {fileID: 2525731408993111240}
   - component: {fileID: 2587624880984617726}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Prop_Fence_Wood_Large_01 (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3700,7 +3712,7 @@ GameObject:
   - component: {fileID: 2525731409002235663}
   - component: {fileID: 2525731409003708123}
   - component: {fileID: 2587624880995188973}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Prop_Fence_Wood_Large_01 (27)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3799,7 +3811,7 @@ GameObject:
   - component: {fileID: 2525731409032951372}
   - component: {fileID: 2525731409031778200}
   - component: {fileID: 2587624881159598510}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Prop_Fence_Wood_Large_01 (16)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3835,7 +3847,7 @@ GameObject:
   - component: {fileID: 2587415284649421648}
   - component: {fileID: 2587836253572915756}
   - component: {fileID: 2587847043534069674}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Prop_Archway_01 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4004,7 +4016,7 @@ GameObject:
   - component: {fileID: 2525731409054889371}
   - component: {fileID: 2525731409055944219}
   - component: {fileID: 2589286276755112945}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Prop_Fence_Platform_01 (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4088,7 +4100,7 @@ GameObject:
   - component: {fileID: 2525731409059510820}
   - component: {fileID: 2525731409060494278}
   - component: {fileID: 2587727952391601302}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Env_Stream_Straight_01 (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4137,7 +4149,7 @@ GameObject:
   - component: {fileID: 2525731409079192901}
   - component: {fileID: 2525731409077744785}
   - component: {fileID: 2587624881071327911}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Prop_Fence_Wood_Large_01 (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4271,7 +4283,7 @@ GameObject:
   - component: {fileID: 2525731409106422711}
   - component: {fileID: 2525731409105308245}
   - component: {fileID: 2587727952489368837}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Env_Stream_Straight_01 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4355,7 +4367,7 @@ GameObject:
   - component: {fileID: 2525731409152018430}
   - component: {fileID: 2525731409152966186}
   - component: {fileID: 2587624880740745244}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Prop_Fence_Wood_Large_01 (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4374,7 +4386,7 @@ GameObject:
   - component: {fileID: 2525731409183795571}
   - component: {fileID: 2525731409182855335}
   - component: {fileID: 2587624880773803665}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Prop_Fence_Wood_Large_01 (23)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4455,7 +4467,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2525731409199872055}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Stream
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4504,7 +4516,7 @@ GameObject:
   - component: {fileID: 2525731409229900453}
   - component: {fileID: 2525731409229141669}
   - component: {fileID: 2587439292891200407}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Prop_Dock_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4653,7 +4665,7 @@ GameObject:
   - component: {fileID: 2525731409227436222}
   - component: {fileID: 2525731409228500978}
   - component: {fileID: 2589080801677418474}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Prop_Wood_Sharp_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4737,7 +4749,7 @@ GameObject:
   - component: {fileID: 2525731409270465987}
   - component: {fileID: 2525731409269267479}
   - component: {fileID: 2587624880724943393}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Prop_Fence_Wood_Large_01 (21)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4755,7 +4767,7 @@ GameObject:
   - component: {fileID: 2525731409290349630}
   - component: {fileID: 2525731409293321914}
   - component: {fileID: 2525731409292287600}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Env_Water
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4922,7 +4934,7 @@ GameObject:
   - component: {fileID: 2525731409299032759}
   - component: {fileID: 2525731409297944887}
   - component: {fileID: 2589286276966120669}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Prop_Fence_Platform_01 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5021,7 +5033,7 @@ GameObject:
   - component: {fileID: 2525731409357051253}
   - component: {fileID: 2525731409357728929}
   - component: {fileID: 2587624880812348055}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Prop_Fence_Wood_Large_01 (14)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5040,7 +5052,7 @@ GameObject:
   - component: {fileID: 2525731409384981528}
   - component: {fileID: 2525731409384324556}
   - component: {fileID: 2587624880841032698}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Prop_Fence_Wood_Large_01 (30)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5189,7 +5201,7 @@ GameObject:
   - component: {fileID: 2525731409394912474}
   - component: {fileID: 2525731409395561742}
   - component: {fileID: 2587624880850176824}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Prop_Fence_Wood_Large_01 (29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5273,7 +5285,7 @@ GameObject:
   - component: {fileID: 2525731409411622404}
   - component: {fileID: 2525731409412259016}
   - component: {fileID: 2588196258855484914}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Bld_House_Window_04 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5342,7 +5354,7 @@ GameObject:
   - component: {fileID: 2525731409415944948}
   - component: {fileID: 2525731409417338936}
   - component: {fileID: 2588196258860302594}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Bld_House_Window_04 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5391,7 +5403,7 @@ GameObject:
   - component: {fileID: 2525731409423003268}
   - component: {fileID: 2525731409421801296}
   - component: {fileID: 2587624882623359334}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Prop_Fence_Wood_Large_01 (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5510,7 +5522,7 @@ GameObject:
   - component: {fileID: 2525731409441699064}
   - component: {fileID: 2525731409440584986}
   - component: {fileID: 2587727952019862090}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Env_Stream_Straight_01 (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5609,7 +5621,7 @@ GameObject:
   - component: {fileID: 2525731409488237386}
   - component: {fileID: 2525731409487123112}
   - component: {fileID: 2587727952065615352}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Env_Stream_Straight_01 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5628,7 +5640,7 @@ GameObject:
   - component: {fileID: 2525731409611593011}
   - component: {fileID: 2525731409610697959}
   - component: {fileID: 2587624882812244689}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Prop_Fence_Wood_Large_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5727,7 +5739,7 @@ GameObject:
   - component: {fileID: 2525731409644429782}
   - component: {fileID: 2525731409645099010}
   - component: {fileID: 2587624882710341172}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Prop_Fence_Wood_Large_01 (22)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5848,7 +5860,7 @@ GameObject:
   - component: {fileID: 2587748140979971021}
   - component: {fileID: 2587438598421028191}
   - component: {fileID: 2588318698691433859}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Bld_Roof_Long_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5897,7 +5909,7 @@ GameObject:
   - component: {fileID: 2525731409669465487}
   - component: {fileID: 2525731409670347151}
   - component: {fileID: 2587439290849834173}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Prop_Dock_03 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5966,7 +5978,7 @@ GameObject:
   - component: {fileID: 2525731409687047118}
   - component: {fileID: 2525731409686007886}
   - component: {fileID: 2589286275240058276}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Prop_Fence_Platform_01 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6058,7 +6070,7 @@ GameObject:
   - component: {fileID: 2525731409703367238}
   - component: {fileID: 2525731409704520594}
   - component: {fileID: 2587624882366068132}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Prop_Fence_Wood_Large_01 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6142,7 +6154,7 @@ GameObject:
   - component: {fileID: 2525731409701198443}
   - component: {fileID: 2525731409702626239}
   - component: {fileID: 2587624882364161417}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Prop_Fence_Wood_Large_01 (17)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6283,7 +6295,7 @@ GameObject:
   - component: {fileID: 2525731409706869239}
   - component: {fileID: 2525731409705410511}
   - component: {fileID: 2587637515850973535}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Env_Stream_Corner_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6302,7 +6314,7 @@ GameObject:
   - component: {fileID: 2525731409790882368}
   - component: {fileID: 2525731409791865762}
   - component: {fileID: 2587727952297743602}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Env_Stream_Straight_01 (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6402,7 +6414,7 @@ GameObject:
   - component: {fileID: 2525731409796679744}
   - component: {fileID: 2589169795945472696}
   - component: {fileID: 2587848025768932676}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Bld_Guard_Tower_01 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6486,7 +6498,7 @@ GameObject:
   - component: {fileID: 2525731409821566087}
   - component: {fileID: 2525731409820581639}
   - component: {fileID: 2589286275374461677}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Prop_Fence_Platform_01 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6570,7 +6582,7 @@ GameObject:
   - component: {fileID: 2525731409842461730}
   - component: {fileID: 2525731409841371132}
   - component: {fileID: 2587359442973939602}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Env_Stream_Straight_02 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6689,7 +6701,7 @@ GameObject:
   - component: {fileID: 2525731409857408122}
   - component: {fileID: 2525731409856730542}
   - component: {fileID: 2587624882520370072}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Prop_Fence_Wood_Large_01 (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6723,7 +6735,7 @@ GameObject:
   - component: {fileID: 2525731409871062044}
   - component: {fileID: 2525731409872147196}
   - component: {fileID: 2587335145299061952}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Prop_Ladder_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6872,7 +6884,7 @@ GameObject:
   - component: {fileID: 2525731409931590992}
   - component: {fileID: 2525731409932592848}
   - component: {fileID: 2589286275451185978}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Prop_Fence_Platform_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6906,7 +6918,7 @@ GameObject:
   - component: {fileID: 2525731409937937915}
   - component: {fileID: 2525731409938967223}
   - component: {fileID: 2589080803387243183}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Prop_Wood_Sharp_02 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6975,7 +6987,7 @@ GameObject:
   - component: {fileID: 2525731409947694898}
   - component: {fileID: 2525731409946799846}
   - component: {fileID: 2587624882476208336}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Prop_Fence_Wood_Large_01 (19)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7124,7 +7136,7 @@ GameObject:
   - component: {fileID: 2525731410023837982}
   - component: {fileID: 2525731410024728778}
   - component: {fileID: 2587624882016237308}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Prop_Fence_Wood_Large_01 (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7208,7 +7220,7 @@ GameObject:
   - component: {fileID: 2525731410048987444}
   - component: {fileID: 2525731410050066146}
   - component: {fileID: 2588231698478382196}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Prop_Wood_Sharp_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7227,7 +7239,7 @@ GameObject:
   - component: {fileID: 2525731410055105446}
   - component: {fileID: 2525731410056573554}
   - component: {fileID: 2587624882048060484}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Prop_Fence_Wood_Large_01 (13)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7326,7 +7338,7 @@ GameObject:
   - component: {fileID: 2525731410086367634}
   - component: {fileID: 2525731410084948038}
   - component: {fileID: 2587624882211706480}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Prop_Fence_Wood_Large_01 (15)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7410,7 +7422,7 @@ GameObject:
   - component: {fileID: 2525731410148178388}
   - component: {fileID: 2525731410149097472}
   - component: {fileID: 2587624882273779254}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Prop_Fence_Wood_Large_01 (24)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7479,7 +7491,7 @@ GameObject:
   - component: {fileID: 2525731410165800120}
   - component: {fileID: 2525731410164901228}
   - component: {fileID: 2587624882157443930}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Prop_Fence_Wood_Large_01 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7629,7 +7641,7 @@ GameObject:
   - component: {fileID: 2525731410233813184}
   - component: {fileID: 2589169796397531704}
   - component: {fileID: 2587848026283644356}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Bld_Guard_Tower_01 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7698,7 +7710,7 @@ GameObject:
   - component: {fileID: 2525731410238223144}
   - component: {fileID: 2525731410239408892}
   - component: {fileID: 2587624881827214538}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Prop_Fence_Wood_Large_01 (12)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7747,7 +7759,7 @@ GameObject:
   - component: {fileID: 2525731410287556037}
   - component: {fileID: 2525731410286517787}
   - component: {fileID: 2587359442378849909}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Env_Stream_Straight_02 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7866,7 +7878,7 @@ GameObject:
   - component: {fileID: 2525731410326829510}
   - component: {fileID: 2525731410325668360}
   - component: {fileID: 2589079394344944810}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Prop_Ladder_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7915,7 +7927,7 @@ GameObject:
   - component: {fileID: 2525731410354260453}
   - component: {fileID: 2525731410353234491}
   - component: {fileID: 2587359442445288021}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Env_Stream_Straight_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8034,7 +8046,7 @@ GameObject:
   - component: {fileID: 2525731410355590538}
   - component: {fileID: 2525731410356792414}
   - component: {fileID: 2587624881944580712}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Prop_Fence_Wood_Large_01 (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8133,7 +8145,7 @@ GameObject:
   - component: {fileID: 2525731410360529167}
   - component: {fileID: 2525731410359421583}
   - component: {fileID: 2589286275913533285}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Prop_Fence_Platform_01 (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8167,7 +8179,7 @@ GameObject:
   - component: {fileID: 2525731410375196988}
   - component: {fileID: 2525731410374123202}
   - component: {fileID: 2587148319024087536}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Bld_Base_Door_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8286,7 +8298,7 @@ GameObject:
   - component: {fileID: 2525731410376926448}
   - component: {fileID: 2525731410376285476}
   - component: {fileID: 2587624881967227666}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Prop_Fence_Wood_Large_01 (25)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8320,7 +8332,7 @@ GameObject:
   - component: {fileID: 2525731410470308515}
   - component: {fileID: 2525731410471777143}
   - component: {fileID: 2587624881926393153}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Prop_Fence_Wood_Large_01 (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8504,7 +8516,7 @@ GameObject:
   - component: {fileID: 2525731410472484499}
   - component: {fileID: 2525731410473682015}
   - component: {fileID: 2588196259044492645}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Bld_House_Window_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8553,7 +8565,7 @@ GameObject:
   - component: {fileID: 2525731410473353712}
   - component: {fileID: 2525731410474039332}
   - component: {fileID: 2587624881927603730}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Prop_Fence_Wood_Large_01 (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8637,7 +8649,7 @@ GameObject:
   - component: {fileID: 2525731410477875206}
   - component: {fileID: 2525731410476726738}
   - component: {fileID: 2587624881933436900}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Prop_Fence_Wood_Large_01 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9897,7 +9909,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7573698387211333838}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: House 13
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9966,7 +9978,7 @@ GameObject:
   - component: {fileID: 3691992491631386516}
   - component: {fileID: 3691992491630760268}
   - component: {fileID: 3736313864154073108}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Bld_Church_Room_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10031,7 +10043,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3896433228114406742}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: House 3 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10064,7 +10076,7 @@ GameObject:
   - component: {fileID: 3935213264298443912}
   - component: {fileID: 3935213264299498908}
   - component: {fileID: 3924890030955936192}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Bld_Church_Window_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10198,7 +10210,7 @@ GameObject:
   - component: {fileID: 4339803937772866984}
   - component: {fileID: 4339803937773858366}
   - component: {fileID: 4385539614691659276}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Bld_House_Door_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10297,7 +10309,7 @@ GameObject:
   - component: {fileID: 4356603009016062381}
   - component: {fileID: 4356603009017153839}
   - component: {fileID: 4365035139980560545}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Bld_Church_Extension_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10413,7 +10425,7 @@ GameObject:
   - component: {fileID: 6255303746131940804}
   - component: {fileID: 6253819395297540802}
   - component: {fileID: 6254935112567397378}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Bld_Roof_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}

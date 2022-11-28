@@ -8,6 +8,9 @@ public class GameManager : MonoBehaviour
     public GameObject overviewCanvas;
     public GameObject incontrolCanvas;
 
+    public GameObject gameOverScreen;
+    public GameObject victoryScreen;
+
     public static GameManager Instance;
     public enum GameState
     {
@@ -20,6 +23,8 @@ public class GameManager : MonoBehaviour
     }
     [SerializeField] public GameState gameState;
 
+    GameObject enemy;
+
     private void Awake()
     {
         
@@ -29,7 +34,7 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
             Instance = this;
             var parameters = new LoadSceneParameters(LoadSceneMode.Additive);
-
+            enemy = GameObject.FindGameObjectsWithTag("Enemy")[0]; 
             SceneManager.LoadScene(1, parameters);
             SceneManager.LoadScene(2, parameters);
             SceneManager.LoadScene(3, parameters);
@@ -50,6 +55,19 @@ public class GameManager : MonoBehaviour
     {
         overviewCanvas.SetActive(IsOverview());
         incontrolCanvas.SetActive(IsInControl());
+        switch(gameState){
+            case GameState.Overview:
+            case GameState.InControl:
+                if(GetComponent<PopulationManager>().population <= GetComponent<PopulationManager>().maxPopulation / 2){
+                    SetToGameOver();
+                    gameOverScreen.SetActive(true);
+                }
+                else if(enemy.GetComponent<Enemy>().health <= 0){
+                    SetToVictory();
+                    victoryScreen.SetActive(true);
+                }
+                break;
+        }
         //UnitGroup unitGroup = new UnitGroup(transform);
     }
 

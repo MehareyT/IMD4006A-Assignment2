@@ -67,7 +67,7 @@ public class Enemy : MonoBehaviour
         healthbar.current = health;
         healthbar.max = health;
         enemyAttack = GetComponent<EnemyAttack>();
-        mapLocations = GameObject.Find("LocationController").GetComponent<SpawnManager>();
+        mapLocations = GameObject.Find("GameManager").GetComponent<SpawnManager>();
     }
 
     // Update is called once per frame
@@ -79,109 +79,67 @@ public class Enemy : MonoBehaviour
 
         player = FindClosestPlayer().transform; 
         enemyAnimator.SetBool("Run", enemyMovement.followingTarget);
-        if (Vector3.Distance(transform.position, player.transform.position) <= detectRange)
+        switch (state)
         {
-            
-            switch (state)
-            {
-                case State.idling:
-                    //calculate how much to eat
-                    if (Vector3.Distance(transform.position, player.transform.position) <= movementRange)
+            case State.idling:
+                //calculate how much to eat
+                if (Vector3.Distance(transform.position, player.transform.position) <= movementRange)
+                {
+                    enemyMovement.SetTarget(player);
+                    enemyMovement.StartFollowing();
+                    state = State.chasing;
+                }
+                break;
+            case State.chasing:
+                if (Vector3.Distance(transform.position, player.transform.position) <= movementRange)
+                {
+                    if (Vector3.Distance(transform.position, player.transform.position) <= attackRange)
                     {
-                        enemyMovement.SetTarget(player);
-                        enemyMovement.StartFollowing();
-                        state = State.chasing;
+                        enemyMovement.StopFollowing();
+                        enemyAttack.Attack(enemyAnimator);
+                        state = State.attacking;
                     }
-                    break;
-                case State.chasing:
+                    else
+                    {
+
+                        //move towards player
+                    }
+                }
+                else
+                {
+                    enemyMovement.StopFollowing();
+                    state = State.idling;
+                }
+                break;
+            case State.attacking:
+                if (enemyAnimator.GetCurrentAnimatorStateInfo(0).IsName("EnemyIdle"))
+                {
                     if (Vector3.Distance(transform.position, player.transform.position) <= movementRange)
                     {
                         if (Vector3.Distance(transform.position, player.transform.position) <= attackRange)
                         {
-                            enemyMovement.StopFollowing();
                             enemyAttack.Attack(enemyAnimator);
-                            state = State.attacking;
                         }
                         else
                         {
-
-                            //move towards player
+                            enemyMovement.StartFollowing();
+                            state = State.chasing;
                         }
                     }
                     else
                     {
-                        enemyMovement.StopFollowing();
                         state = State.idling;
                     }
-                    break;
-                case State.attacking:
-                    if (enemyAnimator.GetCurrentAnimatorStateInfo(0).IsName("EnemyIdle"))
-                    {
-                        if (Vector3.Distance(transform.position, player.transform.position) <= movementRange)
-                        {
-                            if (Vector3.Distance(transform.position, player.transform.position) <= attackRange)
-                            {
-                                enemyAttack.Attack(enemyAnimator);
-                            }
-                            else
-                            {
-                                enemyMovement.StartFollowing();
-                                state = State.chasing;
-                            }
-                        }
-                        else
-                        {
-                            state = State.idling;
-                        }
-                    }
-                    break;
-                case State.fleeing:
-                    // if player is in range
-                    //move away from player
-                    //else switch state to idling
-                    break;
-                case State.dead:
-                    break;
-            }
+                }
+                break;
+            case State.fleeing:
+                // if player is in range
+                //move away from player
+                //else switch state to idling
+                break;
+            case State.dead:
+                break;
         }
-        else
-        {
-            switch (state)
-            {
-                case State.idling:
-                    
-                    nonPlayerTarget = selectNewLocation();
-
-                    enemyMovement.SetTarget(nonPlayerTarget);
-                    enemyMovement.StartFollowing();
-                    state = State.chasing;
-                    
-                    break;
-                case State.chasing:
-                    if (Vector3.Distance(transform.position, nonPlayerTarget.position) >= attackRange)
-                    {
-
-                    }
-                    else
-                    {
-                        enemyMovement.StopFollowing();
-                        //state = State.idling;  //Enable to make enemy run from location to location.
-                    }
-                    break;
-                case State.attacking:
-
-                    break;
-                case State.fleeing:
-                    // if player is in range
-                    //move away from player
-                    //else switch state to idling
-                    break;
-                case State.dead:
-                    break;
-            }
-        }
-        
-        
         
     }
 
