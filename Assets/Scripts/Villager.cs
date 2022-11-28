@@ -214,6 +214,7 @@ public class Villager : MonoBehaviour
                 break;
             case State.following:
                 agent.speed = 8;
+                agent.acceleration = 15;
                 if(Vector3.Distance(transform.position,closestDead.position) <= fleeRange){
                     emoteSystem.Emote("Sad");
                 }
@@ -412,17 +413,19 @@ public class Villager : MonoBehaviour
         
         foreach(Villager item in neighbours)
         {
-            float dist;
+            if(item != null){
+                float dist;
 
-            Vector3 dir = gameObject.transform.position - item.gameObject.transform.position;
-            
-            dist = dir.magnitude;
-            //Debug.Log($"distance to neighbour = {dist}"); 
-            if(dist <= stopDis)
-            {
-                if (item.arrived)
+                Vector3 dir = gameObject.transform.position - item.gameObject.transform.position;
+                
+                dist = dir.magnitude;
+                //Debug.Log($"distance to neighbour = {dist}"); 
+                if(dist <= stopDis)
                 {
-                    r = true;
+                    if (item.arrived)
+                    {
+                        r = true;
+                    }
                 }
             }
 

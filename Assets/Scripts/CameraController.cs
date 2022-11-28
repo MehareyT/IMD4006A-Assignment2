@@ -55,12 +55,14 @@ public class CameraController : MonoBehaviour
             targList.Add(temp);
             foreach (GameObject item in groupManager.activeGroup.units)
             {
-                CinemachineTargetGroup.Target t;
-                t.radius = targetRadius;
-                t.target = item.transform;
-                t.weight = 1; 
+                if(item != null){
+                    CinemachineTargetGroup.Target t;
+                    t.radius = targetRadius;
+                    t.target = item.transform;
+                    t.weight = 1; 
 
-                targList.Add(t);
+                    targList.Add(t);
+                }
             }
           
 

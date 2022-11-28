@@ -42,6 +42,8 @@ public class PlayerInput : MonoBehaviour
 
     Vector2 mousePos = new Vector2();
 
+    public GameObject map;
+
 
 
     private void Awake()
@@ -88,7 +90,12 @@ public class PlayerInput : MonoBehaviour
 
     private void HandleMapAction(InputAction.CallbackContext obj)
     {
-        
+        if(map.activeSelf){
+            map.SetActive(false);
+        }
+        else{
+            map.SetActive(true);
+        }
     }
 
     private void HandleContextAction(InputAction.CallbackContext obj)

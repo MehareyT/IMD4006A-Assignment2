@@ -8,6 +8,10 @@ public class SpawnLocation : MonoBehaviour
     public int maximumPoplation;
     public int currentlySpawned;
     public float spawnRadius;
+    public float spawnRate;
+    public float spawnChance;
+    public int maxSpawnNum;
+    [HideInInspector]public int totalSpawnNum;
 
     void OnDrawGizmosSelected()
     {

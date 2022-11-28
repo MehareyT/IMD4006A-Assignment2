@@ -39,7 +39,7 @@ public class Enemy : MonoBehaviour
     private EnemyAttack enemyAttack;
 
     ///<summary> The map locations script. </summary>
-    private MapLocations mapLocations;
+    private SpawnManager mapLocations;
 
     public int health = 100;
 
@@ -67,7 +67,7 @@ public class Enemy : MonoBehaviour
         healthbar.current = health;
         healthbar.max = health;
         enemyAttack = GetComponent<EnemyAttack>();
-        mapLocations = GameObject.Find("LocationController").GetComponent<MapLocations>();
+        mapLocations = GameObject.Find("LocationController").GetComponent<SpawnManager>();
     }
 
     // Update is called once per frame

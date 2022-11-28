@@ -241,6 +241,10 @@ MonoBehaviour:
   maximumPoplation: 10
   currentlySpawned: 0
   spawnRadius: 5.2
+  spawnRate: 10
+  spawnChance: 60
+  maxSpawnNum: 8
+  totalSpawnNum: 0
 --- !u!1001 &128107857
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -430,6 +434,10 @@ MonoBehaviour:
   maximumPoplation: 10
   currentlySpawned: 0
   spawnRadius: 5.2
+  spawnRate: 10
+  spawnChance: 40
+  maxSpawnNum: 9
+  totalSpawnNum: 0
 --- !u!1001 &167620106
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1739,6 +1747,10 @@ MonoBehaviour:
   maximumPoplation: 10
   currentlySpawned: 0
   spawnRadius: 4
+  spawnRate: 10
+  spawnChance: 60
+  maxSpawnNum: 8
+  totalSpawnNum: 0
 --- !u!1 &883553612
 GameObject:
   m_ObjectHideFlags: 0
@@ -1982,6 +1994,10 @@ MonoBehaviour:
   maximumPoplation: 10
   currentlySpawned: 0
   spawnRadius: 4.98
+  spawnRate: 10
+  spawnChance: 40
+  maxSpawnNum: 9
+  totalSpawnNum: 0
 --- !u!1001 &948958813
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2100,6 +2116,10 @@ MonoBehaviour:
   maximumPoplation: 10
   currentlySpawned: 0
   spawnRadius: 4
+  spawnRate: 10
+  spawnChance: 60
+  maxSpawnNum: 8
+  totalSpawnNum: 0
 --- !u!1001 &1003743374
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2289,6 +2309,10 @@ MonoBehaviour:
   maximumPoplation: 10
   currentlySpawned: 0
   spawnRadius: 3.12
+  spawnRate: 10
+  spawnChance: 40
+  maxSpawnNum: 9
+  totalSpawnNum: 0
 --- !u!1001 &1128947658
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2478,6 +2502,10 @@ MonoBehaviour:
   maximumPoplation: 10
   currentlySpawned: 0
   spawnRadius: 4
+  spawnRate: 10
+  spawnChance: 40
+  maxSpawnNum: 9
+  totalSpawnNum: 0
 --- !u!1 &1183154802
 GameObject:
   m_ObjectHideFlags: 0
@@ -2525,6 +2553,10 @@ MonoBehaviour:
   maximumPoplation: 10
   currentlySpawned: 0
   spawnRadius: 4.92
+  spawnRate: 10
+  spawnChance: 60
+  maxSpawnNum: 8
+  totalSpawnNum: 0
 --- !u!1 &1222525068
 GameObject:
   m_ObjectHideFlags: 0
@@ -2572,6 +2604,10 @@ MonoBehaviour:
   maximumPoplation: 10
   currentlySpawned: 0
   spawnRadius: 5.31
+  spawnRate: 10
+  spawnChance: 40
+  maxSpawnNum: 9
+  totalSpawnNum: 0
 --- !u!1 &1224648034
 GameObject:
   m_ObjectHideFlags: 0
@@ -2619,6 +2655,10 @@ MonoBehaviour:
   maximumPoplation: 10
   currentlySpawned: 0
   spawnRadius: 4
+  spawnRate: 10
+  spawnChance: 60
+  maxSpawnNum: 8
+  totalSpawnNum: 0
 --- !u!1001 &1372059476
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2906,6 +2946,10 @@ MonoBehaviour:
   maximumPoplation: 10
   currentlySpawned: 0
   spawnRadius: 4
+  spawnRate: 10
+  spawnChance: 40
+  maxSpawnNum: 9
+  totalSpawnNum: 0
 --- !u!1001 &1453966834
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3166,6 +3210,10 @@ MonoBehaviour:
   maximumPoplation: 10
   currentlySpawned: 0
   spawnRadius: 4
+  spawnRate: 10
+  spawnChance: 60
+  maxSpawnNum: 8
+  totalSpawnNum: 0
 --- !u!1001 &1557037196
 PrefabInstance:
   m_ObjectHideFlags: 0
