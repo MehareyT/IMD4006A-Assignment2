@@ -20,7 +20,7 @@ public class UnitGroup
     /// <summary> List of units in the group </summary>
     public List<GameObject> units = new List<GameObject>();
 
-    public float reactionDistance = 2f;
+    public float reactionDistance = 0.3f;
     
 
     /// <summary>
@@ -140,6 +140,7 @@ public class UnitGroup
                     var dist = (hiddenLeader.position - item.transform.position).magnitude;
                     if (dist > reactionDistance)
                     {
+                        item.GetComponent<NavMeshAgent>().ResetPath();
                         item.GetComponent<NavMeshAgent>().destination = hiddenLeader.position;
                     }
                     
