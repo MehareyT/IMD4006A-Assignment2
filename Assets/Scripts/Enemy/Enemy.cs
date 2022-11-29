@@ -41,7 +41,7 @@ public class Enemy : MonoBehaviour
     ///<summary> The map locations script. </summary>
     private SpawnManager mapLocations;
 
-    public int health = 100;
+    public int health = 3;
 
     public Animator hurtAnimator;
 
@@ -74,9 +74,9 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         healthbar.current = health;
-        if (enemyMovement.target == null)
+        if (enemyMovement.target == null && state != State.attacking){
             state = State.idling;
-
+        }
         player = FindClosestPlayer().transform; 
         enemyAnimator.SetBool("Run", enemyMovement.followingTarget);
         switch (state)
@@ -112,7 +112,7 @@ public class Enemy : MonoBehaviour
                 }
                 break;
             case State.attacking:
-                if (enemyAnimator.GetCurrentAnimatorStateInfo(0).IsName("EnemyIdle"))
+                if (enemyAnimator.GetCurrentAnimatorStateInfo(0).IsName("EnemyIdle") || enemyAnimator.GetCurrentAnimatorStateInfo(0).IsName("EnemyRun"))
                 {
                     if (Vector3.Distance(transform.position, player.transform.position) <= movementRange)
                     {
@@ -188,6 +188,7 @@ public class Enemy : MonoBehaviour
         hurtAnimator.SetTrigger("Hurt");
         if(health <= 0){
             state = State.dead;
+            enemyMovement.StopFollowing();
             enemyAnimator.SetTrigger("Die");
         }
 
