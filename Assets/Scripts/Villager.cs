@@ -206,9 +206,9 @@ public class Villager : MonoBehaviour
                 if(Vector3.Distance(transform.position,closestDead.position) <= fleeRange){
                     emoteSystem.Emote("Sad");
                 }
-                if(agent.avoidancePriority!= 5)
+                if(agent.avoidancePriority!= 25)
                 {
-                    agent.avoidancePriority = 5;
+                    agent.avoidancePriority = 25;
                 }
 
                 break;
