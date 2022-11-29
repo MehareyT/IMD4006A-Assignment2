@@ -42,6 +42,8 @@ public class Villager : MonoBehaviour
     public float rallyCooldown = 0.2f;
     private float tempRallyCooldown;
 
+    public AudioSource rallySound;
+    public AudioSource warcrySound;
 
     public RotationConstraint leaderMapIndicator;
     public RotationConstraint villagerMapIndicator;
@@ -454,6 +456,17 @@ public class Villager : MonoBehaviour
             tempRallyCooldown = rallyCooldown;
             Debug.Log("Rally!");
             villagerAnimator.SetTrigger("Wave");
+            if(unitGroup.units.Count < 5)
+            {
+                for(int i = 1; i <= unitGroup.units.Count; i++)
+                {
+                    StartCoroutine(RecruitYell());
+                }
+            } else
+            {
+                warcrySound.pitch = Random.Range(0.95f, 1.1f);
+                warcrySound.Play();
+            }
             if (neighbours.Count > 0)
             {
                 Debug.Assert(unitGroup != null);
@@ -485,6 +498,13 @@ public class Villager : MonoBehaviour
                 }
             }
         }
+    }
+    IEnumerator RecruitYell()
+    {
+        yield return new WaitForSeconds(Random.Range(0.02f, 0.3f));
+        //rallySound.volume -= Random.Range(0.1f, 0.4f);
+        rallySound.PlayOneShot(rallySound.clip);
+        yield return null;
     }
 }
 
