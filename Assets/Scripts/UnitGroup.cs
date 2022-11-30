@@ -135,7 +135,7 @@ public class UnitGroup
                     Debug.Log("Should stop because unit is stopped nearby");
                     item.GetComponent<NavMeshAgent>().destination = item.transform.position;
                 }
-                else if (item != unitLeader && unitLeader.GetComponent<Villager>().arrived == false)
+                if (item != unitLeader && unitLeader.GetComponent<Villager>().arrived == false)
                 {
                     var dist = (hiddenLeader.position - item.transform.position).magnitude;
                     if (dist > reactionDistance)
