@@ -47,6 +47,8 @@ public class Enemy : MonoBehaviour
 
     public Healthbar healthbar;
 
+    public AudioSource thud;
+
 
     ///<summary> The range the player needs to be from the enemy to begin onscreen AI. </summary>
     [SerializeField] private float detectRange;
@@ -61,6 +63,7 @@ public class Enemy : MonoBehaviour
     private int currentBase;
 
     void Awake(){
+        thud = GetComponent<AudioSource>();
         player = FindClosestPlayer().transform; 
         enemyMovement = GetComponent<EnemyMovement>();
         enemyMovement.SetTarget(player);
@@ -185,6 +188,7 @@ public class Enemy : MonoBehaviour
     /// <param name="damage">The amount of damage the enemy will take. </param>
     public void Hurt(int damage){
         health -= damage;
+        thud.Play(0);
         hurtAnimator.SetTrigger("Hurt");
         if(health <= 0){
             state = State.dead;

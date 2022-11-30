@@ -35,13 +35,13 @@ public class GameManager : MonoBehaviour
             Instance = this;
             var parameters = new LoadSceneParameters(LoadSceneMode.Additive);
             enemy = GameObject.FindGameObjectsWithTag("Enemy")[0]; 
-            SceneManager.LoadScene(1, parameters);
+            //SceneManager.LoadScene(1, parameters);
             SceneManager.LoadScene(2, parameters);
             SceneManager.LoadScene(3, parameters);
             SceneManager.LoadScene(4, parameters);
             SceneManager.LoadScene(5, parameters);
             SceneManager.LoadScene(6, parameters);
-            //SceneManager.LoadScene(7, parameters);
+            SceneManager.LoadScene(7, parameters);
         }
         else if (Instance != this)
         {
