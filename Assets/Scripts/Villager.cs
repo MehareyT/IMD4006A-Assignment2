@@ -55,7 +55,7 @@ public class Villager : MonoBehaviour
 
 
     [SerializeField]
-    float moving = 0;
+    public float moving = 0;
 
     public List<Villager> neighbours = new List<Villager>();
     /// <summary>
@@ -502,7 +502,8 @@ public class Villager : MonoBehaviour
     IEnumerator RecruitYell()
     {
         yield return new WaitForSeconds(Random.Range(0.02f, 0.3f));
-        //rallySound.volume -= Random.Range(0.1f, 0.4f);
+        rallySound.volume = (0.8f / Mathf.Min(unitGroup.units.Count, 5)) + 0.2f;
+        rallySound.pitch = Random.Range(0.9f, 1.0f);
         rallySound.PlayOneShot(rallySound.clip);
         yield return null;
     }
