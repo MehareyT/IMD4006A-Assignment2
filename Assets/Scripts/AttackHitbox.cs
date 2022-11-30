@@ -11,7 +11,8 @@ public class AttackHitbox : MonoBehaviour
         if(other.gameObject.tag == "Player"){
             //damage
             popManager.Hurt(1);
-            Instantiate(deathEffect,other.transform.position,other.transform.rotation);
+            var obj = Instantiate(deathEffect,other.transform.position,other.transform.rotation);
+            Destroy(obj,50f);
             Destroy(other.gameObject);
         }
 
