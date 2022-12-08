@@ -53,7 +53,6 @@ public class WalkSFXScript : MonoBehaviour
         cr_running = true;
         for (int i = 1; i < Mathf.Min(unitGroup.units.Count, 5); i++)
         {
-            Debug.Log("walk");
             StartCoroutine(PlayWalkSound());
         }
         yield return new WaitForSeconds(0.672f);

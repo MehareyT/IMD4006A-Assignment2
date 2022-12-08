@@ -135,14 +135,14 @@ public class UnitGroup
                     Debug.Log("Should stop because unit is stopped nearby");
                     item.GetComponent<NavMeshAgent>().destination = item.transform.position;
                 }
-                if (item != unitLeader && unitLeader.GetComponent<Villager>().arrived == false)
+                else if (item != unitLeader )//&& unitLeader.GetComponent<Villager>().arrived == false)
                 {
-                    var dist = (hiddenLeader.position - item.transform.position).magnitude;
-                    if (dist > reactionDistance)
-                    {
-                        item.GetComponent<NavMeshAgent>().ResetPath();
+                    //var dist = (hiddenLeader.position - item.transform.position).magnitude;
+                    //if (dist > reactionDistance)
+                   // {
+                        //item.GetComponent<NavMeshAgent>().ResetPath();
                         item.GetComponent<NavMeshAgent>().destination = hiddenLeader.position;
-                    }
+                    //}
                     
                 }
 

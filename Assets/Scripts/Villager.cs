@@ -431,16 +431,19 @@ public class Villager : MonoBehaviour
                         r = true;
                     }
                 }
+                else if(item.IsLeading()){
+
+                }
             }
 
         }
         if (r)
         {
-            Debug.Log("CheckForStopped = true");
+            //Debug.Log("CheckForStopped = true");
         }
         else
         {
-            Debug.Log("CheckForStopped = false");
+            //Debug.Log("CheckForStopped = false");
         }
 
 
