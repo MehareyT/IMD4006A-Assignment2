@@ -402,9 +402,9 @@ public class Villager : MonoBehaviour
         return state == State.idling ? true : false;
     }
 
-    public bool IsPatroling()
+    public bool IsFleeing()
     {
-        return state == State.patroling ? true : false;
+        return state == State.fleeing ? true : false;
     }
     /// <summary>
     /// Checks if neighbours within stopping distance are stopped.
@@ -453,7 +453,7 @@ public class Villager : MonoBehaviour
     public void Rally()
     {
        
-        if (IsFollowing() && tempRallyCooldown <= 0 || IsLeading() && tempRallyCooldown <= 0)
+        if (!IsIdling() && !IsFleeing() && tempRallyCooldown <= 0)
         {
             emoteSystem.Emote("Beg");
             tempRallyCooldown = rallyCooldown;

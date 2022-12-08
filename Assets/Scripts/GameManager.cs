@@ -25,14 +25,25 @@ public class GameManager : MonoBehaviour
     [SerializeField] public GameState gameState;
 
     GameObject enemy;
+    public float tutorialTimer = 30;
+    bool tutorialOnce = false;
+    DialogueSystem dialogueSystem;
+    public Dialogue tutorial1;
+    public Dialogue tutorial2;
+
+    public Dialogue win1;
+    public Dialogue win2;
+
+    public Dialogue lose1;
+    public Dialogue lose2;
 
     private void Awake()
     {
         
-        
+        dialogueSystem = GameObject.Find("Dialogue").GetComponent<DialogueSystem>();
         if(Instance == null)
         {
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
             Instance = this;
             var parameters = new LoadSceneParameters(LoadSceneMode.Additive);
             enemy = GameObject.FindGameObjectsWithTag("Enemy")[0]; 
@@ -56,6 +67,24 @@ public class GameManager : MonoBehaviour
     {
         overviewCanvas.SetActive(IsOverview());
         incontrolCanvas.SetActive(IsInControl());
+        if(gameState == GameState.Overview){
+            if(tutorialTimer >= 0){
+                tutorialTimer -= Time.deltaTime;
+            }
+            else if(!tutorialOnce){
+                if(Random.Range(0,100) > 50){
+                    dialogueSystem.PlayDialogue(tutorial1);
+                }
+                else{
+                    dialogueSystem.PlayDialogue(tutorial2);
+                }
+                
+                tutorialOnce = true;
+            }
+        }
+        else if(!tutorialOnce){
+            tutorialOnce = true;
+        }
         switch(gameState){
             case GameState.Overview:
             case GameState.InControl:
@@ -63,11 +92,23 @@ public class GameManager : MonoBehaviour
                     SetToGameOver();
                     gameOverScreen.SetActive(true);
                     gameMusic.SetActive(false);
+                    if(Random.Range(0,100) > 50){
+                    dialogueSystem.PlayDialogue(lose1);
+                    }
+                    else{
+                        dialogueSystem.PlayDialogue(lose2);
+                    }
                 }
                 else if(enemy.GetComponent<Enemy>().health <= 0){
                     SetToVictory();
                     victoryScreen.SetActive(true);
                     gameMusic.SetActive(false);
+                    if(Random.Range(0,100) > 50){
+                    dialogueSystem.PlayDialogue(win1);
+                    }
+                    else{
+                        dialogueSystem.PlayDialogue(win2);
+                    }
                 }
                 break;
         }

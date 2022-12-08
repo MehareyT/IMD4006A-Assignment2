@@ -6,7 +6,7 @@ using TMPro;
 public class PopulationManager : MonoBehaviour
 {
 
-    /// <summary> The max population minus the total amount of population remove </summary>
+    /// <summary> The max population minus the total amount of population removed </summary>
     public int population = 0;
 
     /// <summary> The maximum amount of population that can ever be spawned </summary>
@@ -33,6 +33,17 @@ public class PopulationManager : MonoBehaviour
     /// <summary> The amount of time to count the amount of villagers removed </summary>
     float counting = 0f;
 
+    bool warningOnce = true;
+
+    DialogueSystem dialogueSystem;
+
+    public Dialogue lowPop1;
+    public Dialogue lowPop2;
+    
+    void Awake(){
+        dialogueSystem = GameObject.Find("Dialogue").GetComponent<DialogueSystem>();
+    }
+
 
     //The hurt function will be triggered multiple times over the course of a few milliseconds when a group of villagers is killed. 
     //To prevent the system from creating a bunch of -1 text effects we wait for .35 seconds and count all the kills during that time.
@@ -58,8 +69,17 @@ public class PopulationManager : MonoBehaviour
             Destroy(obj,1.5f);
             population -= popRemoved;
             popRemoved = 0;
-            
 
+        }
+
+        if(population <= (maxPopulation * (2/3)) && warningOnce){
+            if(Random.Range(0,100) > 50){
+                dialogueSystem.PlayDialogue(lowPop1);
+            }
+            else{
+                dialogueSystem.PlayDialogue(lowPop2);
+            }
+            warningOnce = false;
         }
     }
 }
