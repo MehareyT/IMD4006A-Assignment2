@@ -37,7 +37,7 @@ public class WalkSFXScript : MonoBehaviour
                 }
 
                 footSound.enabled = true;
-                footSound.volume = (0.5f / Mathf.Min(unitGroup.units.Count, 5)) + 0.5f;
+                footSound.volume = (0.5f / Mathf.Min(unitGroup.units.Count, 5));
                 footSound.pitch = Random.Range(0.9f, 1.2f);
 
             }

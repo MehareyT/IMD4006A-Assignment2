@@ -450,7 +450,7 @@ public class Villager : MonoBehaviour
     public void Rally()
     {
        
-        if (IsLeading() && tempRallyCooldown <= 0)
+        if (IsFollowing() && tempRallyCooldown <= 0 || IsLeading() && tempRallyCooldown <= 0)
         {
             emoteSystem.Emote("Beg");
             tempRallyCooldown = rallyCooldown;
@@ -502,7 +502,7 @@ public class Villager : MonoBehaviour
     IEnumerator RecruitYell()
     {
         yield return new WaitForSeconds(Random.Range(0.02f, 0.3f));
-        rallySound.volume = (0.8f / Mathf.Min(unitGroup.units.Count, 5)) + 0.2f;
+        rallySound.volume = (0.1f / Mathf.Min(unitGroup.units.Count, 5)) + 0.1f;
         rallySound.pitch = Random.Range(0.9f, 1.0f);
         rallySound.PlayOneShot(rallySound.clip);
         yield return null;

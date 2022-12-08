@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject gameOverScreen;
     public GameObject victoryScreen;
+    public GameObject gameMusic;
 
     public static GameManager Instance;
     public enum GameState
@@ -61,10 +62,12 @@ public class GameManager : MonoBehaviour
                 if(GetComponent<PopulationManager>().population <= GetComponent<PopulationManager>().maxPopulation / 2){
                     SetToGameOver();
                     gameOverScreen.SetActive(true);
+                    gameMusic.SetActive(false);
                 }
                 else if(enemy.GetComponent<Enemy>().health <= 0){
                     SetToVictory();
                     victoryScreen.SetActive(true);
+                    gameMusic.SetActive(false);
                 }
                 break;
         }
