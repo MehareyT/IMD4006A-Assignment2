@@ -160,12 +160,12 @@ public class PlayerInput : MonoBehaviour
 
                     if (col.GetComponent<Villager>() && villagerCollider != col)
                     {
-                        col.GetComponent<Villager>().highlighted.SetActive(true);
+                        col.GetComponent<Villager>().highlighted.transform.localScale = new Vector3(0.4303836f,0.4303836f,0.4303836f);
                         villagerCollider = col;
                     }
                 }
                 else if(villagerCollider != null){
-                    villagerCollider.GetComponent<Villager>().highlighted.SetActive(false);
+                    villagerCollider.GetComponent<Villager>().highlighted.transform.localScale = new Vector3(0.2303836f,0.2303836f,0.2303836f);
                     villagerCollider = null;
                 }
                 VectorUpdate();

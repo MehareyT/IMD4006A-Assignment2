@@ -12,6 +12,7 @@ public class Villager : MonoBehaviour
     private UnitGroup unitGroup;
     public PlayerInput playerInput;
     GroupManager groupManager;
+    GameManager gameManager;
     NavMeshAgent agent;
     public bool arrived = false;
     /// <summary> The radius the unit will see the enemy and start attacking it </summary>
@@ -79,7 +80,7 @@ public class Villager : MonoBehaviour
     {
         
         enemy = GameObject.FindGameObjectsWithTag("Enemy")[0].transform;
-        
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         var mapParent = GameObject.Find("MapCameraParent");
         conSource.sourceTransform = mapParent.transform;
         conSource.weight = 1;
@@ -107,7 +108,7 @@ public class Villager : MonoBehaviour
 
 
         //moving = Mathf.Abs(agent.velocity.x) + Mathf.Abs(agent.velocity.z);
-
+        highlighted.SetActive(gameManager.IsOverview());
         moving = agent.velocity.magnitude;
         villagerAnimator.SetFloat("SpeedVal", moving);
         float distanceLeft = agent.remainingDistance;
