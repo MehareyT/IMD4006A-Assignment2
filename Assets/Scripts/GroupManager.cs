@@ -7,15 +7,34 @@ public class GroupManager : MonoBehaviour
 {
     [SerializeField]
     public UnitGroup activeGroup;
+
+    GameManager gameManager;
     
     [SerializeField]
     List<UnitGroup> unitGroups = new List<UnitGroup>();
+
+    DialogueSystem dialogueSystem;
+    public Dialogue lostGroup1;
+    public Dialogue lostGroup2;
 
     bool isModified = false;
     // Start is called before the first frame update
     void Start()
     {
-        
+        dialogueSystem = GameObject.Find("Dialogue").GetComponent<DialogueSystem>();
+        gameManager = GetComponent<GameManager>();
+    }
+
+    public bool lostGroupDialogue(){
+        if(gameManager.gameState != GameManager.GameState.Victory || gameManager.gameState != GameManager.GameState.GameOver){
+            if(Random.Range(0,100) > 50){
+                return dialogueSystem.PlayDialogue(lostGroup1);
+            }
+            else{
+                return dialogueSystem.PlayDialogue(lostGroup2);
+            }
+        }
+        return false;
     }
 
     // Update is called once per frame
@@ -23,6 +42,17 @@ public class GroupManager : MonoBehaviour
     {
         //while(isMod == false)
         //{
+        if(activeGroup != null){
+            if(activeGroup.units.Count > 10){
+
+            }
+            else if(activeGroup.units.Count > 5){
+                
+            }
+            else{
+
+            }
+        }
 
         UnitGroup[] temp = unitGroups.ToArray();
         foreach (UnitGroup item in temp)

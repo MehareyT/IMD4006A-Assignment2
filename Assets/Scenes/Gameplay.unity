@@ -875,8 +875,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 12985042}
-  m_LocalRotation: {x: 0.5513911, y: 0, z: 0, w: 0.8342469}
-  m_LocalPosition: {x: 0, y: 18.399853, z: -7.8387127}
+  m_LocalRotation: {x: 0.41631252, y: 0, z: 0, w: 0.9092216}
+  m_LocalPosition: {x: -4.54166, y: 23.69909, z: -28.726631}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -17627,7 +17627,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 0.8597758, b: 0.8392157, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.43
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -21404,6 +21404,8 @@ MonoBehaviour:
     units: []
     reactionDistance: 0
   unitGroups: []
+  lostGroup1: {fileID: 11400000, guid: a308ea30adab41447bb0d45959274b85, type: 2}
+  lostGroup2: {fileID: 11400000, guid: f1fb7b2171a2c484586e53d208febcde, type: 2}
 --- !u!114 &529641512
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32816,6 +32818,12 @@ MonoBehaviour:
   head: {fileID: 386051397}
   groupManager: {fileID: 529641511}
   hideArrowRange: 1.4
+  farMonster1: {fileID: 11400000, guid: 1f7d1494baa2db047a34da6fd1a6cf4f, type: 2}
+  farMonster2: {fileID: 11400000, guid: 047f2109da264fe4aad9978a568a2597, type: 2}
+  tooScared1: {fileID: 11400000, guid: adba8d03f49925d47abb8e2c199529f4, type: 2}
+  tooScared2: {fileID: 11400000, guid: bcd69beb38968ce4aa3252d2885125ba, type: 2}
+  perfectGroup1: {fileID: 11400000, guid: 75690a35315d64f44b75746b3d267d15, type: 2}
+  perfectGroup2: {fileID: 11400000, guid: 419161a17350c5e459d68fc89dc92f96, type: 2}
 --- !u!114 &785163077
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -72498,6 +72506,8 @@ MonoBehaviour:
   hurtAnimator: {fileID: 2087481444}
   healthbar: {fileID: 954065202}
   thud: {fileID: 0}
+  lowHealth1: {fileID: 11400000, guid: fdbee4f9b059caa40bc6ffebf7ffc590, type: 2}
+  lowHealth2: {fileID: 11400000, guid: 55a3eacb0013cc942962da79a1c343b8, type: 2}
   detectRange: 50
   locationTargetRange: 100
 --- !u!195 &1852763423

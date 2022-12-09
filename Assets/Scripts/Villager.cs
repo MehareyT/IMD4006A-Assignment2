@@ -46,6 +46,8 @@ public class Villager : MonoBehaviour
     public AudioSource rallySound;
     public AudioSource warcrySound;
 
+    bool follow = false;
+
     public RotationConstraint leaderMapIndicator;
     public RotationConstraint villagerMapIndicator;
 
@@ -180,6 +182,7 @@ public class Villager : MonoBehaviour
         switch (state)
         {
             case State.idling:
+                follow = false;
                 agent.speed = 3;
                 agent.acceleration = 5;
                 if(Vector3.Distance(transform.position,closestDead.position) <= fleeRange){
@@ -192,10 +195,16 @@ public class Villager : MonoBehaviour
             case State.patroling:
                 break;
             case State.fleeing:
-                agent.speed = 2;
-                agent.acceleration = 5;
-                if(Vector3.Distance(transform.position,enemy.transform.position) > fleeRange*2){
+                if(!follow){
+                    agent.speed = 2;
+                    agent.acceleration = 5;
+                }
+                
+                if(Vector3.Distance(transform.position,enemy.transform.position) > fleeRange*2 && !follow){
                     state = State.idling;
+                }
+                else if(Vector3.Distance(transform.position,enemy.transform.position) > fleeRange && follow){
+                    state = State.following;
                 }
 
                 Vector3 dirToEnemy = transform.position - enemy.transform.position;
@@ -216,14 +225,23 @@ public class Villager : MonoBehaviour
 
                 break;
             case State.following:
+                follow = true;
                 agent.speed = 8;
                 agent.acceleration = 15;
                 if(Vector3.Distance(transform.position,closestDead.position) <= fleeRange){
                     emoteSystem.Emote("Sad");
                 }
-                if(Vector3.Distance(transform.position,enemy.transform.position) <= attackRange){
-                    state = State.attacking;
+                if(unitGroup.units.Count > 5){
+                    if(Vector3.Distance(transform.position,enemy.transform.position) <= attackRange){
+                        state = State.attacking;
+                    }
                 }
+                else{
+                    if(Vector3.Distance(transform.position,enemy.transform.position) <= attackRange){
+                        state = State.fleeing;
+                    }
+                }
+                
                 Follow();
                 break;
             case State.attacking:

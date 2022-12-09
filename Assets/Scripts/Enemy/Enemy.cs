@@ -17,6 +17,7 @@ public class Enemy : MonoBehaviour
         dead
     }
 
+    DialogueSystem dialogueSystem;
     ///<summary> The state that the enemy is in. </summary>
     [SerializeField] private State state = State.idling;
 
@@ -49,6 +50,11 @@ public class Enemy : MonoBehaviour
 
     public AudioSource thud;
 
+    public Dialogue lowHealth1;
+    public Dialogue lowHealth2;
+
+    bool runOnce = false;
+
 
     ///<summary> The range the player needs to be from the enemy to begin onscreen AI. </summary>
     [SerializeField] private float detectRange;
@@ -63,6 +69,7 @@ public class Enemy : MonoBehaviour
     private int currentBase;
 
     void Awake(){
+        dialogueSystem = GameObject.Find("Dialogue").GetComponent<DialogueSystem>();
         thud = GetComponent<AudioSource>();
         player = FindClosestPlayer().transform; 
         enemyMovement = GetComponent<EnemyMovement>();
@@ -77,6 +84,14 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         healthbar.current = health;
+        if(health <= healthbar.max * 0.3f && !runOnce){
+            if(Random.Range(0,100) > 50){
+                runOnce = dialogueSystem.PlayDialogue(lowHealth1);
+            }
+            else{
+                runOnce = dialogueSystem.PlayDialogue(lowHealth2);
+            }
+        }
         if (enemyMovement.target == null && state != State.attacking){
             state = State.idling;
         }

@@ -20,6 +20,8 @@ public class UnitGroup
     /// <summary> List of units in the group </summary>
     public List<GameObject> units = new List<GameObject>();
 
+    bool oncePerL = false;
+
     public float reactionDistance = 0.3f; //If reaction distance is too large it will units will move really weird and stutter when they get too close to the leader. 
     
 
@@ -82,6 +84,9 @@ public class UnitGroup
         if (unitLeader!=null)
         {
             UpdateUnitDestinations();
+            if(oncePerL){
+                oncePerL = false;
+            }
             //units.RemoveAll(item => item == null);
         }
         else{
@@ -91,6 +96,9 @@ public class UnitGroup
                     item.GetComponent<Villager>().SetToIdle();
                 }
                 
+            }
+            if(!oncePerL){
+                oncePerL = groupManager.lostGroupDialogue();
             }
             units.Clear();
 

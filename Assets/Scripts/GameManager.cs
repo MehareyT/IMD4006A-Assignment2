@@ -37,6 +37,9 @@ public class GameManager : MonoBehaviour
     public Dialogue lose1;
     public Dialogue lose2;
 
+    bool lose = true;
+    bool win = true;
+
     private void Awake()
     {
         
@@ -65,6 +68,23 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(!lose){
+            if(Random.Range(0,100) > 50){
+                lose = dialogueSystem.PlayDialogue(lose1);
+            }
+            else{
+                lose = dialogueSystem.PlayDialogue(lose2);
+            }
+        }
+        if(!win){
+            if(Random.Range(0,100) > 50){
+                win = dialogueSystem.PlayDialogue(win1);
+            }
+            else{
+                win =dialogueSystem.PlayDialogue(win2);
+            }
+
+        }
         overviewCanvas.SetActive(IsOverview());
         incontrolCanvas.SetActive(IsInControl());
         if(gameState == GameState.Overview){
@@ -73,13 +93,11 @@ public class GameManager : MonoBehaviour
             }
             else if(!tutorialOnce){
                 if(Random.Range(0,100) > 50){
-                    dialogueSystem.PlayDialogue(tutorial1);
+                    tutorialOnce = dialogueSystem.PlayDialogue(tutorial1);
                 }
                 else{
-                    dialogueSystem.PlayDialogue(tutorial2);
+                    tutorialOnce = dialogueSystem.PlayDialogue(tutorial2);
                 }
-                
-                tutorialOnce = true;
             }
         }
         else if(!tutorialOnce){
@@ -88,26 +106,28 @@ public class GameManager : MonoBehaviour
         switch(gameState){
             case GameState.Overview:
             case GameState.InControl:
-                if(GetComponent<PopulationManager>().population <= GetComponent<PopulationManager>().maxPopulation / 2){
+                if(GetComponent<PopulationManager>().population <= GetComponent<PopulationManager>().maxPopulation * 0.25){
                     SetToGameOver();
+                    GameObject.Find("Enemy").SetActive(false);
                     gameOverScreen.SetActive(true);
                     gameMusic.SetActive(false);
                     if(Random.Range(0,100) > 50){
-                    dialogueSystem.PlayDialogue(lose1);
+                       lose = dialogueSystem.PlayDialogue(lose1);
                     }
                     else{
-                        dialogueSystem.PlayDialogue(lose2);
+                       lose = dialogueSystem.PlayDialogue(lose2);
                     }
                 }
                 else if(enemy.GetComponent<Enemy>().health <= 0){
                     SetToVictory();
+                    GameObject.Find("Enemy").SetActive(false);
                     victoryScreen.SetActive(true);
                     gameMusic.SetActive(false);
                     if(Random.Range(0,100) > 50){
-                    dialogueSystem.PlayDialogue(win1);
+                        win = dialogueSystem.PlayDialogue(win1);
                     }
                     else{
-                        dialogueSystem.PlayDialogue(win2);
+                        win =dialogueSystem.PlayDialogue(win2);
                     }
                 }
                 break;

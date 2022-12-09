@@ -12,18 +12,16 @@ public class DialogueSystem : MonoBehaviour
     public float cooldown;
     float tempCooldown;
     // Start is called before the first frame update
-    public void PlayDialogue(Dialogue dialogue)
+    public bool PlayDialogue(Dialogue dialogue)
     {
         if(tempCooldown <= 0){
             audio.PlayOneShot(dialogue.audio);
             text.text = dialogue.text;
             animator.SetBool("Show",true);
             tempCooldown = cooldown;
+            return true;
         }
-        else{
-            PlayDialogue(dialogue);
-        }
-        
+        return false;      
 
     }
 

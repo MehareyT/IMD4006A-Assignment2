@@ -33,7 +33,7 @@ public class PopulationManager : MonoBehaviour
     /// <summary> The amount of time to count the amount of villagers removed </summary>
     float counting = 0f;
 
-    bool warningOnce = true;
+    bool warningOnce = false;
 
     DialogueSystem dialogueSystem;
 
@@ -72,14 +72,13 @@ public class PopulationManager : MonoBehaviour
 
         }
 
-        if(population <= (maxPopulation * (2/3)) && warningOnce){
+        if(population <= (maxPopulation * 0.75f) && !warningOnce){
             if(Random.Range(0,100) > 50){
-                dialogueSystem.PlayDialogue(lowPop1);
+                warningOnce = dialogueSystem.PlayDialogue(lowPop1);
             }
             else{
-                dialogueSystem.PlayDialogue(lowPop2);
+                warningOnce = dialogueSystem.PlayDialogue(lowPop2);
             }
-            warningOnce = false;
         }
     }
 }
