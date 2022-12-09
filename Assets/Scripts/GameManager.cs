@@ -37,6 +37,8 @@ public class GameManager : MonoBehaviour
     public Dialogue lose1;
     public Dialogue lose2;
 
+    public Animator tutorial;
+
     bool lose = true;
     bool win = true;
 
@@ -98,6 +100,7 @@ public class GameManager : MonoBehaviour
                 else{
                     tutorialOnce = dialogueSystem.PlayDialogue(tutorial2);
                 }
+                tutorial.SetTrigger("Trigger");
             }
         }
         else if(!tutorialOnce){
@@ -106,9 +109,9 @@ public class GameManager : MonoBehaviour
         switch(gameState){
             case GameState.Overview:
             case GameState.InControl:
-                if(GetComponent<PopulationManager>().population <= GetComponent<PopulationManager>().maxPopulation * 0.25){
+                if(GetComponent<PopulationManager>().population <= GetComponent<PopulationManager>().maxPopulation * 0.40){
                     SetToGameOver();
-                    GameObject.Find("Enemy").SetActive(false);
+                    Destroy(GameObject.Find("Enemy"),2f);
                     gameOverScreen.SetActive(true);
                     gameMusic.SetActive(false);
                     if(Random.Range(0,100) > 50){

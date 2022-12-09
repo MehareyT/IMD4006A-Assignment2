@@ -17,6 +17,12 @@ public class GroupManager : MonoBehaviour
     public Dialogue lostGroup1;
     public Dialogue lostGroup2;
 
+    public Dialogue moreMob1;
+    public Dialogue moreMob2;
+    public Animator tutorial;
+    float previousCount = 1;
+    float counting = 0;
+
     bool isModified = false;
     // Start is called before the first frame update
     void Start()
@@ -43,15 +49,25 @@ public class GroupManager : MonoBehaviour
         //while(isMod == false)
         //{
         if(activeGroup != null){
-            if(activeGroup.units.Count > 10){
-
-            }
-            else if(activeGroup.units.Count > 5){
-                
+            if(activeGroup.units.Count != previousCount){
+                previousCount = activeGroup.units.Count;
+                counting = 0;
             }
             else{
+                counting += Time.deltaTime;
+                if(counting >= 20){
+                    if(Random.Range(0,100) > 50){
+                        dialogueSystem.PlayDialogue(moreMob1);
+                    }
+                    else{
+                        dialogueSystem.PlayDialogue(moreMob2);
+                    }
+                    counting = 0;
+                    tutorial.SetTrigger("Trigger");
+                }
 
             }
+
         }
 
         UnitGroup[] temp = unitGroups.ToArray();

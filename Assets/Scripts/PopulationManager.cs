@@ -74,10 +74,10 @@ public class PopulationManager : MonoBehaviour
 
         }
 
-        if(population <= 50){
+        if(population <= 60){
             lowHealth.SetActive(true);
-            float f = population - 25;
-            float x = f/25;
+            float f = population - 40;
+            float x = f/20;
             float y = 1 - x;
             lowHealth.GetComponent<AudioSource>().pitch = 1 + y;
             lowHealth.GetComponent<AudioSource>().volume = 0.1f + y/2;
