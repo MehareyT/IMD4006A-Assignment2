@@ -39,6 +39,8 @@ public class PopulationManager : MonoBehaviour
 
     public Dialogue lowPop1;
     public Dialogue lowPop2;
+
+    public GameObject lowHealth;
     
     void Awake(){
         dialogueSystem = GameObject.Find("Dialogue").GetComponent<DialogueSystem>();
@@ -70,6 +72,15 @@ public class PopulationManager : MonoBehaviour
             population -= popRemoved;
             popRemoved = 0;
 
+        }
+
+        if(population <= 50){
+            lowHealth.SetActive(true);
+            float f = population - 25;
+            float x = f/25;
+            float y = 1 - x;
+            lowHealth.GetComponent<AudioSource>().pitch = 1 + y;
+            lowHealth.GetComponent<AudioSource>().volume = 0.1f + y/2;
         }
 
         if(population <= (maxPopulation * 0.75f) && !warningOnce){
